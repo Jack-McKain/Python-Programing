@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<!-- modified from url=(0037)http://cs61a.org/lab/lab03/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="CS:2021 Python Programming">
+  <meta name="author" content="cs2021">
+
+  <meta name="viewport" content="width=device-width">
+
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="mono-blue.css">
+  <script src="highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="resource.css">
+
+  <link rel="stylesheet" type="text/css" href="lab.css">
+
+  <title>CS 2023 Module 1 Lab: Expressions and Control</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">CS 2023 - Module 1 Lab Sheet</a>
+        </div>
+
+
+      </div>
+    </nav>
+
+    <div id="content" class="container">
+      <div class='row'>
+        <div class='col-md-9'>
+          <div class='page-header'>
+            <h1><span class="content-title-brand">Lab 1</span>: Expressions and Control</h1>
+          </div>
+
+          <p><i>Due at End of Week 1</i></p>
+
+
+        <h2 id="division">Division</h2>
+
+
+        <p>Let's compare the different division-related operators in Python:</p>
+
+        <table class='table table-bordered'>
+          <tr>
+            <th>True Division <br> (decimal division) <br> The <code>/</code> Operator</th>
+            <th>Floor Division <br> (integer division) <br> The <code>//</code> Operator</th>
+            <th>Modulo <br> (similar to a remainder) <br> The <code>%</code> Operator</th>
+
+          </tr>
+          <tr>
+            <td align="left">
+              <pre><code>>>> 1 / 4
+0.25
+
+>>> 25 / 4
+6.25
+
+>>> 11 / 3
+3.6666666666666665
+
+>>> 5 / 0
+ZeroDivisionError
+</code></pre>
+            </td>
+            <td align="left">
+              <pre><code>>>> 1 // 4
+0
+
+>>> 25 // 4
+6
+
+>>> 11 // 3
+3
+
+>>> 7 // 0
+ZeroDivisionError
+</pre></code>
+            </td>
+            <td align="left">
+              <pre><code>>>> 1 % 4
+1
+
+>>> 25 % 5
+0
+
+>>> 11 % 3
+2
+
+>>> 9 % 0
+ZeroDivisionError
+</pre></code>
+            </td>
+          </tr>
+        </table>
+
+        <p>One useful technique involving the <code>%</code> operator is to check
+          whether a number <code>x</code> is divisible by another number <code>y</code>:</p>
+
+        <pre><code>x % y == 0</code></pre>
+
+        <p>For example, in order to check if <code>x</code> is an even number:</p>
+
+        <pre><code>x % 2 == 0</code></pre>
+
+
+        <h2 id="boolean-operators">Boolean Operators</h2>
+
+
+        <p>Python supports three boolean operators: <code>and</code>, <code>or</code>, and <code>not</code>:</p>
+
+        <pre><code>&gt;&gt;&gt; a = 4
+&gt;&gt;&gt; a &lt; 2 and a &gt; 0
+False
+&gt;&gt;&gt; a &lt; 2 or a &gt; 0
+True
+&gt;&gt;&gt; not (a &gt; 0)
+False</code></pre>
+
+        <ul>
+          <li><code>and</code> will evaluate to <code>True</code> only if both operands evaluate to <code>True</code>.
+            If at least one operand is <code>False</code>, then <code>and</code> evaluates to <code>False</code></li>
+          <li><code>or</code> will evaluate to <code>True</code> if at least one operand evaluates to <code>True</code>.
+            If all operands are <code>False</code>, then <code>or</code> evaluates to <code>False</code></li>
+        </ul>
+
+        <p>What do you think the following expression evaluates to? Try it out in the Python interpreter.</p>
+
+        <pre><code>True and not False or not True and False</code></pre>
+
+        <p>Using parentheses can be helpful to understand how a program will
+          behave. Python interprets that expression in the following
+          way:</p>
+
+        <pre><code>(True and (not False)) or ((not True) and False)</code></pre>
+
+        <p>Boolean operators, like arithmetic operators, have an order of
+          operation:</p>
+
+        <ul>
+          <li><code>not</code> has the highest priority</li>
+          <li><code>and</code></li>
+          <li><code>or</code> has the lowest priority</li>
+        </ul>
+
+        <p>It turns out <code>and</code> and <code>or</code> don't just work on booleans (<code>True</code>, <code>False</code>). Other Python
+          values can be considered "false-y", including <code>False</code>, <code>0</code>, <code>None</code>, and <code>&quot;&quot;</code> (the empty string).
+          All other values are considered "truth-y".</p>
+
+        <h3 class="question" id="q1">Question 1: What Would Python Print?</h3>
+
+        <p>What would Python print? Try to figure it out before you type it into the
+          interpreter!</p>
+
+
+        <pre><code>&gt;&gt;&gt; 13 and True
+<div class="alt 6">______</div><div class="solution 6">&#x54;&#x72;&#x75;&#x65;</div>
+&gt;&gt;&gt; 0 or False
+<div class="alt 6">______</div><div class="solution 6">&#x46;&#x61;&#x6c;&#x73;&#x65;</div>
+&gt;&gt;&gt; &quot;&quot; and 0 or False
+<div class="alt 6">______</div><div class="solution 6">&#x46;&#x61;&#x6c;&#x73;&#x65;</div></code></pre>
+
+        <button id='6' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <p>Remember <code>and</code> and <code>or</code> do not always return booleans when using truth-y and false-y values.</p>
+
+
+        <h3 id="short-circuiting">Short Circuiting</h3>
+
+
+        <p>What do you think will happen if we type the following into Python?</p>
+
+        <pre><code>1 / 0</code></pre>
+
+        <p>Try typing it into Python! You should see a <code>ZeroDivisionError</code>. But what about this expression?</p>
+
+        <pre><code>True or 1 / 0</code></pre>
+
+        <p>This doesn't cause any errors! In fact, it evaluates to <code>True</code>. That is:</p>
+
+        <table class='table table-bordered'>
+          <tr>
+            <th>Operator</th>
+            <th>Goes left to right and</th>
+            <th>Example</th>
+          </tr>
+          <tr>
+            <td>AND</td>
+            <td>Stops at the first "false-y" value</td>
+            <td><code>False and 1 / 0</code> evaluates to <code>False</code></td>
+          </tr>
+          <tr>
+            <td>OR</td>
+            <td>Stops at the first "truth-y" value</td>
+            <td><code>True or 1 / 0</code> evaluates to <code>True</code></td>
+          </tr>
+        </table>
+
+        <p>If <code>and</code> and <code>or</code> make it to the last value without stopping, they just return
+          the last value. In Python, <code>and</code> and <code>or</code> are examples of <em>short-circuiting
+          operators</em> (they don't necessarily evaluate every operand).</p>
+
+        <h3 class="question" id="q2">Question 2: What Would Python Print?</h3>
+
+        <p>What would Python print? Try to figure it out before you type it into the
+          interpreter!</p>
+
+
+        <pre><code>&gt;&gt;&gt; True and 13
+<div class="alt 7">______</div><div class="solution 7">&#x31;&#x33;</div>
+&gt;&gt;&gt; False or 0
+<div class="alt 7">______</div><div class="solution 7">&#x30;</div>
+&gt;&gt;&gt; not 10
+<div class="alt 7">______</div><div class="solution 7">&#x46;&#x61;&#x6c;&#x73;&#x65;</div>
+&gt;&gt;&gt; not None
+<div class="alt 7">______</div><div class="solution 7">&#x54;&#x72;&#x75;&#x65;</div></code></pre>
+
+        <button id='7' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <h3 class="question" id="q3">Question 3: What Would Python Print?</h3>
+
+
+        <pre><code>&gt;&gt;&gt; True and 1 / 0 and False
+<div class="alt 8">______</div><div class="solution 8">&#x5a;&#x65;&#x72;&#x6f;&#x44;&#x69;&#x76;&#x69;&#x73;&#x69;&#x6f;&#x6e;&#x45;&#x72;&#x72;&#x6f;&#x72;</div>
+&gt;&gt;&gt; True or 1 / 0 or False
+<div class="alt 8">______</div><div class="solution 8">&#x54;&#x72;&#x75;&#x65;</div>
+&gt;&gt;&gt; True and 0
+<div class="alt 8">______</div><div class="solution 8">&#x30;</div>
+&gt;&gt;&gt; False or 1
+<div class="alt 8">______</div><div class="solution 8">&#x31;</div>
+&gt;&gt;&gt; 1 and 3 and 6 and 10 and 15
+<div class="alt 8">______</div><div class="solution 8">&#x31;&#x35;</div>
+&gt;&gt;&gt; 0 or False or 2 or 1 / 0
+<div class="alt 8">______</div><div class="solution 8">&#x32;</div></code></pre>
+
+        <button id='8' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <h3 class="question" id="q4">Question 4: Fix the Bug</h3>
+
+        <p>The following snippet of code doesn't work! Figure out what is wrong
+          and fix the bugs.</p>
+
+
+
+        <pre><code>def both_positive(x, y):
+    &quot;&quot;&quot;Returns True if both x and y are positive.
+
+    &gt;&gt;&gt; both_positive(&#x2d;1, 1)
+    False
+    &gt;&gt;&gt; both_positive(1, 1)
+    True
+    &quot;&quot;&quot;
+<div class="alt 0">    "*** YOUR CODE HERE ***"
+    return x and y &gt; 0
+</div><div class="solution 0">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x78;&#x20;&#x3e;&#x20;&#x30;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x79;&#x20;&#x3e;&#x20;&#x30;</div></code></pre>
+
+        <div class="solution 0">
+
+          <p>The original line (<code>return x and y &gt; 0</code>) will check that two things are
+            true:</p>
+
+          <ol>
+            <li><code>x</code></li>
+            <li><code>y &gt; 0</code></li>
+          </ol>
+
+          <p>When will <code>x</code> be considered True? In Python, any number that is not 0
+            is considered True. Thus, the first doctest will fail: <code>x = &#x2d;1</code>
+            and <code>&#x2d;1 != 0</code>, and <code>y = 1 &gt; 0</code>, so both clauses are True.</p>
+
+        </div>
+
+
+        <button id='0' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+
+
+        <h2 id="if-statements">If statements</h2>
+
+
+        <h3 class="question" id="q5">Question 5: What would Python print?</h3>
+
+
+        <pre><code>&gt;&gt;&gt; def bar(a, b):
+...     if a == 4:
+...         return 6
+...     elif b &gt;= 4:
+...         return 6 + 7 + a
+...     else:
+...         return 25
+...
+&gt;&gt;&gt; bar(10, 6)
+<div class="alt 9">______</div><div class="solution 9">&#x32;&#x33;</div></code></pre>
+
+        <button id='9' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <p>First check the <code>if</code> then the <code>elif</code>. If neither of these are True then proceed to <code>else</code>.</p>
+
+
+        <pre><code>&gt;&gt;&gt; def foo(x):
+...     if x == 5:
+...         return True
+...     else:
+...         return False
+&gt;&gt;&gt; foo(5)
+<div class="alt 10">______</div><div class="solution 10">&#x54;&#x72;&#x75;&#x65;</div></code></pre>
+
+        <button id='10' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <p>If no <code>elif</code> is given, proceed straight to <code>else</code>. Functions can have multiple <code>elif</code> in a row.</p>
+
+
+        <pre><code>&gt;&gt;&gt; def abs(x):
+...     if x &gt;= 0:
+...         return x
+...     return &#x2d;x
+...
+&gt;&gt;&gt; abs(&#x2d;5)
+<div class="alt 11">______</div><div class="solution 11">&#x35;</div>
+&gt;&gt;&gt; abs(5)
+<div class="alt 11">______</div><div class="solution 11">&#x35;</div></code></pre>
+
+        <button id='11' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <p>In these cases, the <code>else</code> can be omitted since the code will either exit the function after the <code>if</code> or proceed to the next unindented line.</p>
+
+
+        <pre><code>&gt;&gt;&gt; def abs(x):
+...     if x &gt;= 0:
+...         print(x)
+...     print(&#x2d;x)
+...
+&gt;&gt;&gt; abs(&#x2d;5)
+<div class="alt 12">______</div><div class="solution 12">&#x35;</div>
+&gt;&gt;&gt; abs(5)
+<div class="alt 12">______</div><div class="solution 12">&#x35;&#xa;&#x2d;&#x35;</div></code></pre>
+
+        <button id='12' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <code>print</code> is different and will not exit the function. The second <code>print</code> will still run even after the <code>if</code>.
+
+
+        <h2 id="while-loops">While loops</h2>
+
+
+        <h3 class="question" id="q6">Question 6: What Would Python Print?</h3>
+
+
+        <pre><code>&gt;&gt;&gt; n = 3
+&gt;&gt;&gt; while n &gt;= 0:
+...     n &#x2d;= 1
+...     print(n)
+...
+<div class="alt 13">______</div><div class="solution 13">&#x32;&#xa;&#x31;&#xa;&#x30;&#xa;&#x2d;&#x31;</div></code></pre>
+
+        <button id='13' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <p>The code block will continue to run until <code>n</code> becomes <code><</code>
+          0, since 0 is not greater than or equal to 0.</p>
+
+        <h3 class="question" id="q7">Question 7: What Would Python Print?</h3>
+
+
+        <pre><code>&gt;&gt;&gt; # typing Ctrl&#x2d;C will stop infinite loops
+&gt;&gt;&gt; n = 4
+&gt;&gt;&gt; while n &lt; 5:
+...     n -= 1
+...     print(n)
+...
+<div class="alt 14">______</div><div class="solution 14">&#x33;&#xa;&#x32;&#xa;&#x31;&#xa;&#x30;&#xa;&#x2d;&#x31;&#xa;&#x2d;&#x32;&#xa;&#x23;&#x20;&#x63;&#x6f;&#x6e;&#x74;&#x69;&#x6e;&#x75;&#x65;&#x73;&#x20;&#x66;&#x6f;&#x72;&#x65;&#x76;&#x65;&#x72;</div></code></pre>
+
+        <button id='14' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <p>Make sure your while loop condition eventually becomes false, or it'll never stop!</p>
+
+        <h3 class="question" id="q8">Question 8: What Would Python Print?</h3>
+
+
+        <pre><code>&gt;&gt;&gt; def exp_decay(n):
+...     if n % 2 != 0:
+...         return
+...     while n &gt; 0:
+...         print(n)
+...         n = n // 2
+...
+&gt;&gt;&gt; exp_decay(64)
+<div class="alt 15">______</div><div class="solution 15">&#x36;&#x34;&#xa;&#x33;&#x32;&#xa;&#x31;&#x36;&#xa;&#x38;&#xa;&#x34;&#xa;&#x32;&#xa;&#x31;</div>
+&gt;&gt;&gt; exp_decay(5)
+<div class="alt 15">______</div><div class="solution 15">&#x23;&#x20;&#x4e;&#x6f;&#x20;&#x6f;&#x75;&#x74;&#x70;&#x75;&#x74;</div></code></pre>
+
+        <button id='15' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <p>The while loop will keep running until the loop condition becomes false.</p>
+
+        <h3 class="question" id="q9">Question 9: Factor This</h3>
+
+        <p>Define a function <code>factors(n)</code> which takes in a number, <code>n</code>, and
+          prints out all of the numbers that divide <code>n</code> evenly. For example, the
+          factors of 20 are 20, 10, 5, 4, 2, 1.</p>
+
+
+
+        <pre><code>def factors(n):
+    &quot;&quot;&quot;Prints out all of the numbers that divide `n` evenly.
+
+    &gt;&gt;&gt; factors(20)
+    20
+    10
+    5
+    4
+    2
+    1
+    &quot;&quot;&quot;
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x78;&#x20;&#x3d;&#x20;&#x6e;&#xa;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x78;&#x20;&#x3e;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x20;&#x25;&#x20;&#x78;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x78;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x78;&#x20;&#x2d;&#x3d;&#x20;&#x31;</div></code></pre>
+
+
+        <button id='1' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+
+
+        <h3 class="question" id="q10">Question 10: Fibonacci</h3>
+
+        <p>The Fibonacci sequence is a famous sequence in mathematics. The first
+          element in the sequence is 0 and the second element is 1. The <em>n</em>th
+          element is defined as <em>F<sub>n</sub> = F<sub>n-1</sub> +
+          F<sub>n-2</sub></em>.</p>
+
+        <p>Implement the <code>fib</code> function, which takes an integer <code>n</code> and returns
+          the <code>n</code>th Fibonacci number. Use a <code>while</code> loop in your solution.</p>
+
+
+
+        <pre><code>def fib(n):
+    &quot;&quot;&quot;Returns the nth Fibonacci number.
+
+    &gt;&gt;&gt; fib(0)
+    0
+    &gt;&gt;&gt; fib(1)
+    1
+    &gt;&gt;&gt; fib(2)
+    1
+    &gt;&gt;&gt; fib(3)
+    2
+    &gt;&gt;&gt; fib(4)
+    3
+    &gt;&gt;&gt; fib(5)
+    5
+    &gt;&gt;&gt; fib(6)
+    8
+    &gt;&gt;&gt; fib(100)
+    354224848179261915075
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x63;&#x75;&#x72;&#x72;&#x2c;&#x20;&#x6e;&#x65;&#x78;&#x74;&#x20;&#x3d;&#x20;&#x30;&#x2c;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x6e;&#x20;&#x3e;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x63;&#x75;&#x72;&#x72;&#x2c;&#x20;&#x6e;&#x65;&#x78;&#x74;&#x20;&#x3d;&#x20;&#x6e;&#x65;&#x78;&#x74;&#x2c;&#x20;&#x63;&#x75;&#x72;&#x72;&#x20;&#x2b;&#x20;&#x6e;&#x65;&#x78;&#x74;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x20;&#x2d;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x63;&#x75;&#x72;&#x72;</div></code></pre>
+
+
+        <button id='2' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+
+        <h2 id="error-messages">Error Messages</h2>
+
+
+        <p>By now, you've probably seen a couple of error messages. Even though
+          they might look intimidating, error messages are actually very helpful
+          in debugging code. The following are some common types of errors
+          (found at the bottom of an error message):</p>
+
+        <table class='table table-bordered'>
+          <tr>
+            <th>Error Types</th>
+            <th>Descriptions</th>
+          </tr>
+          <tr>
+            <td>SyntaxError</td>
+            <td align="left">Contained improper syntax (e.g.  missing a colon after an `if` statement)</td>
+          </tr>
+          <tr>
+            <td>IndentationError</td>
+            <td align="left">Contained improper indentation (e.g. inconsistent indentation of a function body)</td>
+          </tr>
+          <tr>
+            <td>TypeError</td>
+            <td align="left">Attempted operation on incompatible types (e.g.  trying to add a function and an int)</td>
+          </tr>
+          <tr>
+            <td>ZeroDivisionError</td>
+            <td align="left">Attempted division by zero</td>
+          </tr>
+        </table>
+
+        <p>Using these descriptions of error messages, you should be able to get
+          a better idea of what went wrong with your code. <strong>If you run into
+          error messages, try to identify the problem before asking for
+          help.</strong> You can often Google unknown error messages to see what
+          similar mistakes others have made to help you debug your own code.</p>
+
+        <p>For example:</p>
+
+        <pre><code>&gt;&gt;&gt; square(3, 3)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+TypeError: square() takes 1 positional argument but 2 were given</code></pre>
+
+        <p>Note:</p>
+
+        <ul>
+          <li>The error message tells us what we did wrong - we gave <code>square</code> 2 arguments when it only takes in 1 argument.  In general, the last line is the most helpful.</li>
+          <li>The number in the second to last line (line 1) tells us where the error occured, which will help you track down the error.</li>
+        </ul>
+
+        <h3 class="question" id="q11">Question 11: Factor This</h3>
+
+        <p>Define a function <code>is_factor</code> that checks whether its first argument
+          is a factor of its second argument.  We will assume that <code>0</code> is not a
+          factor of any number but any non-zero number is a factor of <code>0</code>.
+          You should not use <code>if</code> in your solution.</p>
+
+
+
+        <pre><code>def is_factor(x, y):
+    &quot;&quot;&quot; Returns True if x is a factor of y, False otherwise.
+
+    &gt;&gt;&gt; is_factor(3, 6)
+    True
+    &gt;&gt;&gt; is_factor(4, 10)
+    False
+    &gt;&gt;&gt; is_factor(0, 5)
+    False
+    &gt;&gt;&gt; is_factor(0, 0)
+    False
+    &quot;&quot;&quot;
+<div class="alt 3">    "*** YOUR CODE HERE ***"
+</div><div class="solution 3">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x78;&#x20;&#x21;&#x3d;&#x20;&#x30;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x79;&#x20;&#x25;&#x20;&#x78;&#x20;&#x3d;&#x3d;&#x20;&#x30;</div></code></pre>
+
+
+        <button id='3' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <h3 class="question" id="q12">Question 12: Disneyland Discounts</h3>
+
+        <p>Disneyland is having a special where they give discounts for
+          grandparents accompanying their grandchildren.  Help Disneyland figure
+          out when the discount should be given.  Define a function
+          <code>gets_discount</code> that takes two numbers as input (representing the two
+          ages) and returns <code>True</code> if one of them is a senior citizen (age 65 or above)
+          and the other is a child (age 12 or below).  You should not use <code>if</code> in your
+          solution.</p>
+
+
+
+        <pre><code>def gets_discount(x, y):
+    &quot;&quot;&quot; Returns True if this is a combination of a senior citizen
+    and a child, False otherwise.
+
+    &gt;&gt;&gt; gets_discount(65, 12)
+    True
+    &gt;&gt;&gt; gets_discount(9, 70)
+    True
+    &gt;&gt;&gt; gets_discount(40, 45)
+    False
+    &gt;&gt;&gt; gets_discount(40, 75)
+    False
+    &gt;&gt;&gt; gets_discount(65, 13)
+    False
+    &gt;&gt;&gt; gets_discount(7, 9)
+    False
+    &gt;&gt;&gt; gets_discount(73, 77)
+    False
+    &gt;&gt;&gt; gets_discount(70, 31)
+    False
+    &gt;&gt;&gt; gets_discount(10, 25)
+    False
+    &quot;&quot;&quot;
+<div class="alt 4">    "*** YOUR CODE HERE ***"
+</div><div class="solution 4">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x28;&#x78;&#x20;&#x3c;&#x3d;&#x20;&#x31;&#x32;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x79;&#x20;&#x3e;&#x3d;&#x20;&#x36;&#x35;&#x29;&#x20;&#x6f;&#x72;&#x20;&#x28;&#x78;&#x20;&#x3e;&#x3d;&#x20;&#x36;&#x35;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x79;&#x20;&#x3c;&#x3d;&#x20;&#x31;&#x32;&#x29;</div></code></pre>
+
+
+        <button id='4' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+        <h3 class="question" id="q13">Question 13: Falling factorial</h3>
+
+        <p>Let's write a function <code>falling</code>, which is a "falling" factorial
+          that takes two arguments, <code>n</code> and <code>k</code>, and returns the product of <code>k</code>
+          consecutive numbers, starting from <code>n</code> and working downwards.</p>
+
+
+
+        <pre><code>def falling(n, k):
+    &quot;&quot;&quot;Compute the falling factorial of n to depth k.
+
+    &gt;&gt;&gt; falling(6, 3)  # 6 * 5 * 4
+    120
+    &gt;&gt;&gt; falling(4, 0)
+    1
+    &gt;&gt;&gt; falling(4, 3)  # 4 * 3 * 2
+    24
+    &gt;&gt;&gt; falling(4, 1)  # 4
+    4
+    &quot;&quot;&quot;
+<div class="alt 5">    "*** YOUR CODE HERE ***"
+</div><div class="solution 5">&#x20;&#x20;&#x20;&#x20;&#x74;&#x6f;&#x74;&#x61;&#x6c;&#x2c;&#x20;&#x73;&#x74;&#x6f;&#x70;&#x20;&#x3d;&#x20;&#x31;&#x2c;&#x20;&#x6e;&#x2d;&#x6b;&#xa;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x6e;&#x20;&#x3e;&#x20;&#x73;&#x74;&#x6f;&#x70;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x6f;&#x74;&#x61;&#x6c;&#x2c;&#x20;&#x6e;&#x20;&#x3d;&#x20;&#x74;&#x6f;&#x74;&#x61;&#x6c;&#x2a;&#x6e;&#x2c;&#x20;&#x6e;&#x2d;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x74;&#x6f;&#x74;&#x61;&#x6c;</div></code></pre>
+
+
+        <button id='5' class='toggleButton'>
+          Toggle Solution<noscript> (enable JavaScript)</noscript>
+        </button>
+
+
+
+
+      <script>
+        $('.sidebar ul').addClass('nav nav-stacked');
+        $('body').scrollspy({
+          target: '.sidebar',
+          offset: 40
+        });
+      </script>
+
+
+      <script src="./jquery-latest.js"></script>
+
+      <script>
+        $(function() {
+          if (new Date("06/21/2016") < new Date()) {
+            $('.toggleButton').css('display', 'inline-block');
+            $('.toggleButton').click(function() {
+              var solution_id = $(this).attr('id');
+              $('div.' + solution_id).slideToggle(600);
+            });
+          }
+          // Always display these toggle buttons
+          $('.toggleButton.toggle').css('display', 'inline-block');
+          $('.toggleButton.toggle').click(function() {
+            var solution_id = $(this).attr('id');
+            $('div.' + solution_id).slideToggle(600);
+          });
+        });
+      </script>
+
+
+      </body></html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!-- modified from url=(0037)http://cs61a.org/lab/lab03/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="CS:2021 Python Programming">
+  <meta name="keywords" content="CS2021, EECS">
+  <meta name="author" content="cs2021">
+
+  <meta name="viewport" content="width=device-width">
+
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="mono-blue.css">
+  <script src="highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="resource.css">
+
+  <link rel="stylesheet" type="text/css" href="lab.css">
+
+
+  <title>Lab 5: Dictionaries | CS 2021 Fall 2019</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">CS 2021</a>
+        </div>
+
+        
+      </div>
+    </nav>
+
+    <div id="content" class="container">
+      <div class='row'>
+        <div class='col-md-9'>
+          <div class='page-header'>
+            <h1><span class="content-title-brand">Lab 5</span>: Dictionaries - An Interactive Worksheet</h1>
+          </div>
+
+        
+      <h2 id="dictionaries">Dictionaries</h2>
+
+
+      <p>Dictionaries are unordered sets of key-value pairs. To create a
+        dictionary, use the following syntax:</p>
+
+      <pre><code>&gt;&gt;&gt; singers = { &#x27;Iggy Azalea&#x27;: &#x27;Fancy&#x27;, &#x27;Beyonce&#x27;: &#x27;Flawless&#x27;, &#x27;Adam Levine&#x27;: &#x27;Maps&#x27;}</code></pre>
+
+      <p>The curly braces denote the key-value pairs in your dictionary. Each key-value
+        pair is separated by a comma. For each pair, the key appears to the left of the
+        colon and the value appears to the right of the colon. You can retrieve values
+        from your dictionary by "indexing" using the key:</p>
+
+      <pre><code>&gt;&gt;&gt; singers[&#x27;Beyonce&#x27;]
+&#x27;Flawless&#x27;
+&gt;&gt;&gt; singers[&#x27;Iggy Azalea&#x27;]
+&#x27;Fancy&#x27;</code></pre>
+
+      <p>You can update an entry for an existing key in the dictionary using the
+        following syntax. Be careful adding a new key follows identical syntax!</p>
+
+      <pre><code>&gt;&gt;&gt; singers[&#x27;Beyonce&#x27;] = &#x27;Survivor&#x27;
+&gt;&gt;&gt; singers[&#x27;Beyonce&#x27;]
+&#x27;Survivor&#x27;
+&gt;&gt;&gt; singers[&#x27;Nicki Minaj&#x27;] = &#x27;Anaconda&#x27; # new entry!
+&gt;&gt;&gt; singers[&#x27;Nicki Minaj&#x27;]
+&#x27;Anaconda&#x27;</code></pre>
+
+      <p>You can also check for membership of keys!</p>
+
+      <pre><code>&gt;&gt;&gt; &#x27;Adam Levine&#x27; in singers
+True</code></pre>
+
+      <h3 class="question" id="q9">Question: What Would Python Print?</h3>
+
+      <p>What would Python print? Try to figure it out before you type it into the
+        interpreter!</p>
+
+
+      <pre><code>&gt;&gt;&gt; pokemon = {&#x27;pikachu&#x27;: 25, &#x27;dragonair&#x27;: 148, &#x27;mew&#x27;: 151}
+&gt;&gt;&gt; pokemon[&#x27;pikachu&#x27;]
+<div class="alt 15">______</div><div class="solution 15">&#x32;&#x35;</div>
+&gt;&gt;&gt; pokemon[&#x27;jolteon&#x27;] = 135
+&gt;&gt;&gt; pokemon
+<div class="alt 15">______</div><div class="solution 15">&#x7b;&#x27;&#x6a;&#x6f;&#x6c;&#x74;&#x65;&#x6f;&#x6e;&#x27;&#x3a;&#x20;&#x31;&#x33;&#x35;&#x2c;&#x20;&#x27;&#x70;&#x69;&#x6b;&#x61;&#x63;&#x68;&#x75;&#x27;&#x3a;&#x20;&#x32;&#x35;&#x2c;&#x20;&#x27;&#x64;&#x72;&#x61;&#x67;&#x6f;&#x6e;&#x61;&#x69;&#x72;&#x27;&#x3a;&#x20;&#x31;&#x34;&#x38;&#x2c;&#x20;&#x27;&#x6d;&#x65;&#x77;&#x27;&#x3a;&#x20;&#x31;&#x35;&#x31;&#x7d;</div>
+&gt;&gt;&gt; pokemon[&#x27;ditto&#x27;] = 25
+&gt;&gt;&gt; pokemon
+<div class="alt 15">______</div><div class="solution 15">&#x7b;&#x27;&#x6a;&#x6f;&#x6c;&#x74;&#x65;&#x6f;&#x6e;&#x27;&#x3a;&#x20;&#x31;&#x33;&#x35;&#x2c;&#x20;&#x27;&#x70;&#x69;&#x6b;&#x61;&#x63;&#x68;&#x75;&#x27;&#x3a;&#x20;&#x32;&#x35;&#x2c;&#x20;&#x27;&#x64;&#x72;&#x61;&#x67;&#x6f;&#x6e;&#x61;&#x69;&#x72;&#x27;&#x3a;&#x20;&#x31;&#x34;&#x38;&#x2c;&#xa;&#x2019;&#x64;&#x69;&#x74;&#x74;&#x6f;&#x2019;&#x3a;&#x20;&#x32;&#x35;&#x2c;&#x20;&#x2019;&#x6d;&#x65;&#x77;&#x2019;&#x3a;&#x20;&#x31;&#x35;&#x31;&#x7d;</div>
+&gt;&gt;&gt; ’mewtwo’ in pokemon
+<div class="alt 15">______</div><div class="solution 15">&#x46;&#x61;&#x6c;&#x73;&#x65;</div>
+&gt;&gt;&gt; len(pokemon)
+<div class="alt 15">______</div><div class="solution 15">&#x35;</div>
+&gt;&gt;&gt; pokemon[’ditto’] = pokemon[’jolteon’]
+&gt;&gt;&gt; pokemon
+<div class="alt 15">______</div><div class="solution 15">&#x7b;&#x27;&#x6d;&#x65;&#x77;&#x27;&#x3a;&#x20;&#x31;&#x35;&#x31;&#x2c;&#x20;&#x27;&#x64;&#x69;&#x74;&#x74;&#x6f;&#x27;&#x3a;&#x20;&#x31;&#x33;&#x35;&#x2c;&#x20;&#x27;&#x6a;&#x6f;&#x6c;&#x74;&#x65;&#x6f;&#x6e;&#x27;&#x3a;&#x20;&#x31;&#x33;&#x35;&#x2c;&#x20;&#x27;&#x70;&#x69;&#x6b;&#x61;&#x63;&#x68;&#x75;&#x27;&#x3a;&#x20;&#x32;&#x35;&#x2c;&#x20;&#x27;&#x64;&#x72;&#x61;&#x67;&#x6f;&#x6e;&#x61;&#x69;&#x72;&#x27;&#x3a;&#x20;&#x31;&#x34;&#x38;&#x7d;</div></code></pre>
+
+      <button id='15' class='toggleButton'>
+        Toggle Solution<noscript> (enable JavaScript)</noscript>
+      </button>
+
+
+<p>
+Note that the last example demonstrates that dictionaries cannot use
+other mutable data structures as keys. We'll discuss mutability further in the future. 
+
+<pre><code>>>> pokemon[('diglett', 'diglett', 'diglett')] = 51
+>>> pokemon[25] = 'pikachu'
+>>> pokemon
+{'mew': 151, 'ditto': 135, 'jolteon': 135, 25: 'pikachu',
+'pikachu': 25, ('diglett', 'diglett', 'diglett'): 51,
+'dragonair': 148}
+>>> pokemon['mewtwo'] = pokemon['mew'] * 2
+>>> pokemon
+{'mew': 151, 'ditto': 135, 'jolteon': 135, 25: 'pikachu',
+'pikachu': 25, ('diglett', 'diglett', 'diglett'): 51,
+'mewtwo': 302, 'dragonair': 148
+>>> pokemon[['firetype', 'flying']] = 146
+Error: unhashable type 
+</pre></code>
+
+
+        <p>
+           <h2 class="question" id="q10">Successor Tables</h2>
+We will consisder how to build a language bot for Twitter by using    
+a natural language technique called the bigram word model. That is, for every word in a text corpus we will store all possible successor words. These pairs will be stored in a "successor table" implemented using Python dictionaries.
+           </p>
+
+      <p>Once we are done building the successor table we can generate a 'tweet' by starting with a (random) word and then randomly choosing a word from the successor list. Then we repeat the processes to look up the next successors. This process eventually
+        will terminate in a period (".") or other terminal character.</p>
+
+      <p>The word successor
+        table is just an ordinary Python dictionary. The keys in this
+        dictionary are words, and the values are lists of successors to those words found in the corpus.</p>
+
+    
+      Here's an incomplete definition of the <code>build_successors_table</code>
+      function. The input is a list of words corresponding to a given text that is split into "tokens". The output is a successors table. (By default,
+      the first word is a successor to "."). See the example below.
+
+      <blockquote><p>Note: there are two places where you need to write code, denoted by the two
+        <code>&quot;*** YOUR CODE HERE ***&quot;</code></p></blockquote>
+
+
+
+      <pre><code>def build_successors_table(tokens):
+    &quot;&quot;&quot;Takes in a list of words or tokens. Return a dictionary: keys are words; values are lists of successor words. By default, we set the first word in tokens to be a successor to "."
+
+    &gt;&gt;&gt; text = [&#x27;We&#x27;, &#x27;came&#x27;, &#x27;to&#x27;, &#x27;investigate&#x27;, &#x27;,&#x27;, &#x27;catch&#x27;, &#x27;bad&#x27;, &#x27;guys&#x27;, &#x27;and&#x27;, &#x27;to&#x27;, &#x27;eat&#x27;, &#x27;pie&#x27;, &#x27;.&#x27;]
+    &gt;&gt;&gt; table = build_successors_table(text)
+    &gt;&gt;&gt; sorted(table)
+    [&#x27;,&#x27;, &#x27;.&#x27;, &#x27;We&#x27;, &#x27;and&#x27;, &#x27;bad&#x27;, &#x27;came&#x27;, &#x27;catch&#x27;, &#x27;eat&#x27;, &#x27;guys&#x27;, &#x27;investigate&#x27;, &#x27;pie&#x27;, &#x27;to&#x27;]
+    &gt;&gt;&gt; table[&#x27;to&#x27;]
+    [&#x27;investigate&#x27;, &#x27;eat&#x27;]
+    &gt;&gt;&gt; table[&#x27;pie&#x27;]
+    [&#x27;.&#x27;]
+    &gt;&gt;&gt; table[&#x27;.&#x27;]
+    [&#x27;We&#x27;]
+    &quot;&quot;&quot;
+    table = {}
+    prev = &#x27;.&#x27;
+    for word in tokens:
+        if prev not in table:
+<div class="alt 3">            "*** YOUR CODE HERE ***"
+</div><div class="solution 3">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x61;&#x62;&#x6c;&#x65;&#x5b;&#x70;&#x72;&#x65;&#x76;&#x5d;&#x20;&#x3d;&#x20;&#x5b;&#x5d;</div><div class="alt 3">        "*** YOUR CODE HERE ***"
+</div><div class="solution 3">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x61;&#x62;&#x6c;&#x65;&#x5b;&#x70;&#x72;&#x65;&#x76;&#x5d;&#x20;&#x2b;&#x3d;&#x20;&#x5b;&#x77;&#x6f;&#x72;&#x64;&#x5d;</div>        prev = word
+    return table</code></pre>
+
+
+      <button id='3' class='toggleButton'>
+        Toggle Solution<noscript> (enable JavaScript)</noscript>
+      </button>
+
+
+
+      <h3 class="question" id="q11"> Construct a Random Language Tweet</h3>
+
+      <p>Let's generate some sentences that we can tweet! Suppose we're given a starting word. We can look up this word in our table to find its list of successors, and
+        then randomly select a word from this list to be the next word in the
+        sentence. Then we just repeat until we reach some ending punctuation.</p>
+
+      <p><em>Hint</em>: to randomly select from a list, first make sure you import the
+        Python random library with <code>import random</code> and then use the expression
+        <code>random.choice(my_list)</code>)</p>
+
+      <p>This might not be a bad time to play around with adding strings
+        together as well. Let's fill in the <code>construct_tweet</code> function!</p>
+
+
+
+      <pre><code>def construct_tweet(word, table):
+    &quot;&quot;&quot;Returns a string that is a random sentence starting with word, and choosing successors from table.
+    &quot;&quot;&quot;
+    import random
+    result = &#x27; &#x27;
+    while word not in [&#x27;.&#x27;, &#x27;!&#x27;, &#x27;?&#x27;]:
+<div class="alt 4">        "*** YOUR CODE HERE ***"
+</div><div class="solution 4">&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x20;&#x2b;&#x3d;&#x20;&#x77;&#x6f;&#x72;&#x64;&#x20;&#x2b;&#x20;&#x27;&#x20;&#x27;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x77;&#x6f;&#x72;&#x64;&#x20;&#x3d;&#x20;&#x72;&#x61;&#x6e;&#x64;&#x6f;&#x6d;&#x2e;&#x63;&#x68;&#x6f;&#x69;&#x63;&#x65;&#x28;&#x74;&#x61;&#x62;&#x6c;&#x65;&#x5b;&#x77;&#x6f;&#x72;&#x64;&#x5d;&#x29;</div>    return result + word</code></pre>
+
+
+      <button id='4' class='toggleButton'>
+        Toggle Solution<noscript> (enable JavaScript)</noscript>
+      </button>
+
+
+
+      <h3 id="putting-it-all-together">Putting it all together</h3>
+
+
+      <p>Great! Now all that's left is to run our functions with tokens from a text corpus. The following snippets included in the skeleton code will return
+        a list containing the word tokens in all of the works of Shakespeare.</p>
+
+      <blockquote><p><em>Warning</em>: do <strong>NOT</strong> try to print the return result of these functions, since they return long lists of strings.</p></blockquote>
+
+      <pre><code>def shakespeare_tokens(path=&#x27;shakespeare.txt&#x27;, url=&#x27;http://composingprograms.com/shakespeare.txt&#x27;):
+    &quot;&quot;&quot;Return the words of Shakespeare&#x27;s plays as a list.&quot;&quot;&quot;
+    import os
+    from urllib.request import urlopen
+    if os.path.exists(path):
+        return open(&#x27;shakespeare.txt&#x27;, encoding=&#x27;ascii&#x27;).read().split()
+    else:
+        shakespeare = urlopen(url)
+        return shakespeare.read().decode(encoding=&#x27;ascii&#x27;).split()</code></pre>
+
+      <p>We want an easy way to refer to our list of tokens and
+        our successors table.  Let's make the following assignments (<em>Note:</em> the following lines are commented in the provided file. Uncomment them before procceding)</p>
+
+      <pre><code>shakestokens = shakespeare_tokens()
+shakestable = build_successors_table(shakestokens)
+</code></pre>
+
+      <p>Finally, call our tweet generator:</p>
+
+      <pre><code>&gt;&gt;&gt; construct_tweet(&#x27;The&#x27;, shakestable)
+&quot; The plebeians have done us must be news&#x2d;cramm&#x27;d &quot;
+
+&gt;&gt;&gt; construct_tweet(&#x27;The&#x27;, shakestable)
+&quot; The ravish&#x27;d thee , with the mercy of beauty &quot;
+</code>
+</pre>
+
+      <p>Notice that all the sentences start with the word "The". With a few
+        modications, we can make our sentences start with a random word. The
+        following <code>random_tweet</code> function (defined in your starter file) will
+        do the trick:</p>
+
+      <pre><code>def random_tweet(table):
+    import random
+    return construct_tweet(random.choice(table['.']), table)</code></pre>
+
+      <p>Go ahead and load your file into Python (be sure to use the <code>&#x2d;i</code> flag).
+        You can now call the <code>random_tweet</code> function to generate random tweet!</p>
+
+      <pre><code>&gt;&gt;&gt; random_tweet(shakestable)
+&quot; Long live by thy name , then , Dost thou more angel , good Master Deep&#x2d;vow , And tak&#x27;st more ado but following her , my sight Of speaking false !&quot;
+
+&gt;&gt;&gt; random_tweet(shakestable)
+&quot; Yes , why blame him , as is as I shall find a case , That plays at the public weal or the ghost .&quot;
+</code></pre>
+Run a few experiments and determine whether you can say who has the "best words"? :)
+      <code><pre>for _ in range(5):
+    print("ShakespeareBot: ", random_tweet(shakestable)); print()
+</code></pre>
+     
+
+    </div>
+  </div>
+</body>
+<script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+  $(function() {
+    if (new Date("07/08/2015 ") < new Date()) {
+      $('.toggleButton').css('display', 'inline-block');
+      $('.toggleButton').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    }
+    // Always display these toggle buttons
+    $('.toggleButtonShow').click(function() {
+      var solution_id = $(this).attr('id');
+      $('div.' + solution_id).slideToggle(600);
+    });
+  });
+</script>
+</html>

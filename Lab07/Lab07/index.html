@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="CS:2021 Python Programming">
+<meta name="keywords" content="CS2021, Computer Science, EECS">
+  <meta name="author" content="cs2021">
+
+  <meta name="viewport" content="wProidth=device-width">
+
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="mono-blue.css">
+  <script src="highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="resource.css">
+
+  <link rel="stylesheet" type="text/css" href="lab.css">
+
+
+
+
+  <title>Lab 07 | CS2021</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">CS2021</a>
+        </div>
+
+       </div>
+    </nav>
+
+    <div id="content" class="container">
+      <div class='row'>
+        <div class='col-md-9'>
+          <div class='page-header'>
+            <h1><span class="content-title-brand">Lab 07</span>: Interactive Worksheet</h1>
+          </div>
+
+          <p><i>Due date is end of week - see Canvas.</i></p>
+
+          <h2 id='starter-files'>Starter Files</h2>
+          <p>Download <a href="./car.py">car.py</a> and download <a href="./lab07.py">lab07.py</a>
+            The starter files for the questions in this lab.</p>
+
+          <h2 id='submission'>Submission</h2>
+
+        <p>By the end of this lab, you should have submitted your modification of the lab07.py on
+            <code>Canvas</code>. You may submit more than once before the
+            deadline; only the final submission will be graded.</p>
+
+
+
+          <h2 id="object-oriented-programming">Object-Oriented Programming</h2>
+
+
+          <p>Let's dive into <strong>object-oriented programming</strong> (OOP), a model of programming
+            that allows you to think of data in terms of "objects" with their own
+            characteristics and actions, just like objects in real life! This is very
+            powerful and allows you to create objects that are specific to your program &mdash;
+            you can read up on all the details
+            <a href="http://composingprograms.com/pages/25-object-oriented-programming.html">here</a>.
+            For now, we'll guide you through it as you build your very own text-based
+            adventure game!</p>
+
+
+          <h2 id="oop-and-inheritance-example-cars">OOP and Inheritance Example: Cars</h2>
+
+
+          <p>In <code>car.py</code>, you'll find a class called <code>Car</code>. A <strong>class</strong> is a blueprint for
+            creating objects of that type. In this case, the <code>Car</code> class statement tells us
+            how to create <code>Car</code> objects.</p>Pro
+
+        <p>So let's build Brian a car! Don't worry, you won't need to do any physical work
+            &mdash; the <strong>constructor</strong> will do it for you. The <strong>constructor </strong> of a class is a
+            function that creates an <strong>instance</strong>, or one single occurence, of the object
+            outlined by the class. In Python, the constructor method is named <code>__init__</code>.
+            Note that there must be two underscores on each side of <code>init</code>.  The <code>Car</code>
+            class' constructor looks like this:</p>
+
+          <pre><code>def __init__(self, make, model):
+    self.make = make
+    self.model = model
+    self.color = &#x27;No color yet. You need to paint me.&#x27;
+    self.wheels = Car.num_wheels
+    self.gas = Car.gas</code></pre>
+
+          <p>The <code>__init__</code> method for <code>Car</code> has three parameters. The first one, <code>self</code>, is
+            automatically bound to the newly created <code>Car</code> object. The second and third
+            parameters, <code>make</code> and <code>model</code>, are bound to the arguments passed to the
+            constructor, meaning when we make a <code>Car</code> object, we must provide two arguments.
+            Don't worry about the code inside of the constructor for now.</p>
+
+          <p>Let's make our car. Brian would like to drive a Tesla Model S to lecture. We can
+            construct an instance of <code>Car</code> with <code>&#x27;Tesla&#x27;</code> as the <code>make</code> and <code>&#x27;Model S&#x27;</code> as
+            the <code>model</code>.  Rather than calling <code>__init__</code> explicitly, Python allows us to
+            make an instance of a class by using the name of the class.</p>
+
+          <pre><code>
+$ python3 -i car.py
+. . .
+&gt;&gt;&gt; brians_car = Car(&#x27;Tesla&#x27;, &#x27;Model S&#x27;)</code></pre>
+
+          <p>Here, <code>&#x27;Tesla&#x27;</code> is passed in as the <code>make</code>, and 'Model S' as the <code>model</code>. Note
+            that we don't pass in an argument for <code>self</code>, since its value is always the
+            object being created. An <strong>object</strong> is an instance of a class. In this case, <code>
+            brians_car</code> is now bound to a <code>Car</code> object or, in other words, an instance
+            of the <code>Car</code> class.</p>
+
+          <p>So how are the <code>make</code> and <code>model</code> of Brian's car actually stored? Let's talk
+            about <strong>attributes</strong> of instances and classes. Here's a snippet of the code in
+            <code>car.py</code> of the instance and class attributes in the <code>Car</code> class:</p>
+
+          <pre><code>class Car(object):
+    num_wheels = 4
+    gas = 30
+    headlights = 2
+    size = &#x27;Tiny&#x27;
+
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+        self.color = &#x27;No color yet. You need to paint me.&#x27;
+        self.wheels = Car.num_wheels
+        self.gas = Car.gas
+
+    def paint(self, color):
+        self.color = color
+        return self.make + &#x27; &#x27; + self.model + &#x27; is now &#x27; + color</code></pre>
+
+          <p>In the first two lines of the constructor, the name <code>self.make</code> is bound to the
+            first argument passed to the constructor and <code>self.model</code> is bound to the
+            second. These are two examples of instance attributes. An <strong>instance attribute</strong>
+            is a quality that is specific to an instance, and thus can only be accessed
+            using <em>dot notation</em> (separating the instance and attribute with a period) on an
+            instance. In this case, <code>self</code> is bound to our instance, so <code>self.model</code>
+            references our instance's model.</p>
+
+          <p>Our car has other instance attributes too, like <code>color</code> and <code>wheels</code>. As
+            instance attributes, the make, model, and color of <code>brians_car</code> do not affect
+            the make, model, and color of other cars.</p>
+
+          <p>On the other hand, a <strong>class attribute</strong> is a quality that is shared among <em>all</em>
+            instances of the class. For example, the <code>Car</code> class has four class attributes
+            defined at the beginning of a class: <code>num_wheels = 4</code>, <code>gas = 30</code>, <code>headlights =
+            2</code> and <code>size = &#x27;Tiny&#x27;</code>. The first says that all cars have <code>4</code> wheels. Class
+            attributes can also be accessed using <em>dot notation</em>, both on an instance and on
+            the class name itself.</p>
+
+          <p>In the following line, we access <code>brians_car</code>'s <code>color</code> attribute:</p>
+
+          <pre><code>&gt;&gt;&gt; brians_car.color
+&#x27;No color yet. You need to paint me.&#x27;</code></pre>
+
+          <p>Looks like we need to paint <code>brians_car</code>!</p>
+
+          <p>Let's use the <code>paint</code> method from the <code>Car</code> class. <strong>Methods</strong> are functions
+            that are specific to a class; only an instance of the class can use them. We've
+            already seen one method: <code>__init__</code>! Think of methods as actions or abilities of
+            objects. How do we call methods on an instance? You guessed it, dot notation!</p>
+
+          <pre><code>&gt;&gt;&gt; brians_car.paint(&#x27;black&#x27;)
+&#x27;Tesla Model S is now black&#x27;
+&gt;&gt;&gt; brians_car.color
+&#x27;black&#x27;</code></pre>
+
+          <p>Awesome! But if you take a look at the <code>paint</code> method, it takes two parameters.
+            So why don't we need to pass two arguments? Just like we've seen with
+            <code>__init__</code>, all methods of a class have a <code>self</code> parameter to which Python
+            automatically binds the instance that is calling that method. Here,
+            <code>brians_car</code> is bound to <code>self</code> so that the body of <code>paint</code> can access its
+            attributes!</p>
+
+          <p>Brian's black Tesla is pretty cool, but it has to sit in traffic. How about we
+            create a monster truck for him instead? In <code>car.py</code>, we've defined a
+            <code>MonsterTruck</code> class. Let's look at the code for <code>MonsterTruck</code>:</p>
+
+          <pre><code>class MonsterTruck(Car):
+    size = &#x27;Monster&#x27;
+
+    def rev(self):
+        print(&#x27;Vroom! This Monster Truck is huge!&#x27;)
+
+    def drive(self):
+        self.rev()
+        return Car.drive(self)</code></pre>
+
+          <p>Wow! The truck may be big, but the source code is tiny! Let's make sure that the
+            truck still does what we expect it to do. Let's create a new instance of Brian's
+            monster truck:</p>
+
+          <pre><code>&gt;&gt;&gt; brians_truck = MonsterTruck(&#x27;Monster Truck&#x27;, &#x27;XXL&#x27;)</code></pre>
+
+          <p>Does it behave as you would expect a <code>Car</code> to? Can you still paint it? Is it
+            even drivable?</p>
+
+          <p>Well, the class <code>MonsterTruck</code> is defined as <code>class MonsterTruck(Car):</code>, meaning
+            its <em>superclass</em> is <code>Car</code>. Likewise, the class <code>MonsterTruck</code> is a <em>subclass</em>
+            of the <code>Car</code> class. That means the <code>MonsterTruck</code> class <em>inherits all the
+            attributes and methods</em> that were defined in <code>Car</code>, including its constructor!</p>
+
+          <p><strong>Inheritance</strong> makes setting up a hierarchy of classes easier because the
+            amount of code you need to write to define a new class of objects is
+            reduced. You only need to add (or <em>override</em>) new attributes or methods that
+            you want to be unique from those in the superclass.</p>
+
+          <pre><code>&gt;&gt;&gt; brians_car.size
+&#x27;Tiny&#x27;
+&gt;&gt;&gt; brians_truck.size
+&#x27;Monster&#x27;</code></pre>
+
+          <p>Wow, what a difference in size! This is because the class attribute <code>size</code> of
+            <code>MonsterTruck</code> overrides the <code>size</code> class attribute of <code>Car</code>, so all
+            <code>MonsterTruck</code> instances are <code>&#x27;Monster&#x27;</code>-sized.</p>
+
+          <p>In addition, the <code>drive</code> method in <code>MonsterTruck</code> overrides the one in <code>Car</code>.
+          To show off all <code>MonsterTruck</code> instances, we defined a <code>rev</code> method specific to
+            <code>MonsterClass</code>. Regular <code>Car</code>s cannot <code>rev</code>! Everything else &mdash; the
+            constructor <code>__init__</code>, <code>paint</code>, <code>num_wheels</code>, <code>gas</code> &mdash; are inherited from <code>Car</code>.</p>
+
+
+
+
+          <h3 class="question" id="q1">Question: Using the Car class</h3>
+
+          <p>Here is the code from the car example in <code>car.py</code>:</p>
+
+          <pre><code>class Car(object):
+    num_wheels = 4
+    gas = 30
+    headlights = 2
+    size = &#x27;Tiny&#x27;
+
+    def __init__(self, make, model):
+        self.make = make
+        self.model = model
+        self.color = &#x27;No color yet. You need to paint me.&#x27;
+        self.wheels = Car.num_wheels
+        self.gas = Car.gas
+
+    def paint(self, color):
+        self.color = color
+        return self.make + &#x27; &#x27; + self.model + &#x27; is now &#x27; + color
+
+    def drive(self):
+        if self.wheels &lt; Car.num_wheels or self.gas &lt;= 0:
+            return self.make + &#x27; &#x27; + self.model + &#x27; cannot drive!&#x27;
+        self.gas &#x2d;= 10
+        return self.make + &#x27; &#x27; + self.model + &#x27; goes vroom!&#x27;
+
+    def pop_tire(self):
+        if self.wheels &gt; 0:
+            self.wheels &#x2d;= 1
+
+    def fill_gas(self):
+        self.gas += 30
+        print(&#x27;Your car is full.&#x27;)
+
+class MonsterTruck(Car):
+    size = &#x27;Monster&#x27;
+
+    def rev(self):
+        print(&#x27;Vroom! This Monster Truck is huge!&#x27;)
+
+    def drive(self):
+        self.rev()
+        return Car.drive(self)</code></pre>
+
+          <blockquote><p>Test your knowledge with the following What would Python Display
+            questions.</p>
+
+            <pre><code>python3 -i car.py</code></pre>
+
+            <p>If an error occurs, type Error. If nothing is displayed, type Nothing.</p></blockquote>
+
+          <pre><code>&gt;&gt;&gt; brians_car = Car(&#x27;Tesla&#x27;, &#x27;Model S&#x27;)
+&gt;&gt;&gt; brians_car.color
+<div class="alt prompt-1">______</div><div class="solution prompt-1">&#x27;&#x4e;&#x6f;&#x20;&#x63;&#x6f;&#x6c;&#x6f;&#x72;&#x20;&#x79;&#x65;&#x74;&#x2e;&#x20;&#x59;&#x6f;&#x75;&#x20;&#x6e;&#x65;&#x65;&#x64;&#x20;&#x74;&#x6f;&#x20;&#x70;&#x61;&#x69;&#x6e;&#x74;&#x20;&#x6d;&#x65;&#x2e;&#x27;</div>
+&gt;&gt;&gt; brians_car.paint(&#x27;black&#x27;)
+<div class="alt prompt-1">______</div><div class="solution prompt-1">&#x27;&#x54;&#x65;&#x73;&#x6c;&#x61;&#x20;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x20;&#x53;&#x20;&#x69;&#x73;&#x20;&#x6e;&#x6f;&#x77;&#x20;&#x62;&#x6c;&#x61;&#x63;&#x6b;&#x27;</div>
+&gt;&gt;&gt; brians_car.color
+<div class="alt prompt-1">______</div><div class="solution prompt-1">&#x27;&#x62;&#x6c;&#x61;&#x63;&#x6b;&#x27;</div></code></pre>
+          <button id='prompt-1' class='toggleButton prompt'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <pre><code>&gt;&gt;&gt; brians_car = Car(&#x27;Tesla&#x27;, &#x27;Model S&#x27;)
+&gt;&gt;&gt; brians_truck = MonsterTruck(&#x27;Monster Truck&#x27;, &#x27;XXL&#x27;)
+&gt;&gt;&gt; brians_car.size
+<div class="alt prompt-2">______</div><div class="solution prompt-2">&#x27;&#x54;&#x69;&#x6e;&#x79;&#x27;</div>
+&gt;&gt;&gt; brians_truck.size
+<div class="alt prompt-2">______</div><div class="solution prompt-2">&#x27;&#x4d;&#x6f;&#x6e;&#x73;&#x74;&#x65;&#x72;&#x27;</div></code></pre>
+          <button id='prompt-2' class='toggleButton prompt'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <pre><code>&gt;&gt;&gt; brians_car = Car(&#x27;Tesla&#x27;, &#x27;Model S&#x27;)
+&gt;&gt;&gt; brians_car.model
+<div class="alt prompt-3">______</div><div class="solution prompt-3">&#x27;&#x54;&#x65;&#x73;&#x6c;&#x61;&#x27;</div>
+&gt;&gt;&gt; brians_car.gas = 10
+&gt;&gt;&gt; brians_car.drive()
+<div class="alt prompt-3">______</div><div class="solution prompt-3">&#x27;&#x54;&#x65;&#x73;&#x6c;&#x61;&#x20;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x20;&#x53;&#x20;&#x67;&#x6f;&#x65;&#x73;&#x20;&#x76;&#x72;&#x6f;&#x6f;&#x6d;&#x21;&#x27;</div>
+&gt;&gt;&gt; brians_car.drive()
+<div class="alt prompt-3">______</div><div class="solution prompt-3">&#x27;&#x54;&#x65;&#x73;&#x6c;&#x61;&#x20;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x20;&#x53;&#x20;&#x63;&#x61;&#x6e;&#x6e;&#x6f;&#x74;&#x20;&#x64;&#x72;&#x69;&#x76;&#x65;&#x21;&#x27;</div>
+&gt;&gt;&gt; brians_car.fill_gas()
+<div class="alt prompt-3">______</div><div class="solution prompt-3">&#x59;&#x6f;&#x75;&#x72;&#x20;&#x63;&#x61;&#x72;&#x20;&#x69;&#x73;&#x20;&#x66;&#x75;&#x6c;&#x6c;&#x2e;</div>
+&gt;&gt;&gt; brians_car.gas
+<div class="alt prompt-3">______</div><div class="solution prompt-3">&#x33;&#x30;</div></code></pre>
+          <button id='prompt-3' class='toggleButton prompt'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <pre><code>&gt;&gt;&gt; Car.headlights
+<div class="alt prompt-4">______</div><div class="solution prompt-4">&#x32;</div>
+&gt;&gt;&gt; brians_car.headlights
+<div class="alt prompt-4">______</div><div class="solution prompt-4">&#x32;</div>
+&gt;&gt;&gt; Car.headlights = 3
+&gt;&gt;&gt; brians_car.headlights
+<div class="alt prompt-4">______</div><div class="solution prompt-4">&#x33;</div>
+&gt;&gt;&gt; brians_car.headlights = 2
+&gt;&gt;&gt; Car.headlights
+<div class="alt prompt-4">______</div><div class="solution prompt-4">&#x33;</div></code></pre>
+          <button id='prompt-4' class='toggleButton prompt'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <pre><code>&gt;&gt;&gt; brians_car.wheels = 2
+&gt;&gt;&gt; brians_car.wheels
+<div class="alt prompt-5">______</div><div class="solution prompt-5">&#x32;</div>
+&gt;&gt;&gt; Car.num_wheels
+<div class="alt prompt-5">______</div><div class="solution prompt-5">&#x34;</div>
+&gt;&gt;&gt; brians_car.drive()
+<div class="alt prompt-5">______</div><div class="solution prompt-5">&#x27;&#x54;&#x65;&#x73;&#x6c;&#x61;&#x20;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x20;&#x53;&#x20;&#x63;&#x61;&#x6e;&#x6e;&#x6f;&#x74;&#x20;&#x64;&#x72;&#x69;&#x76;&#x65;&#x21;&#x27;</div>
+&gt;&gt;&gt; Car.drive()
+<div class="alt prompt-5">______</div><div class="solution prompt-5">&#x45;&#x72;&#x72;&#x6f;&#x72;&#x20;&#x28;&#x54;&#x79;&#x70;&#x65;&#x45;&#x72;&#x72;&#x6f;&#x72;&#x29;</div>
+&gt;&gt;&gt; Car.drive(brians_car)
+<div class="alt prompt-5">______</div><div class="solution prompt-5">&#x27;&#x54;&#x65;&#x73;&#x6c;&#x61;&#x20;&#x4d;&#x6f;&#x64;&#x65;&#x6c;&#x20;&#x53;&#x20;&#x63;&#x61;&#x6e;&#x6e;&#x6f;&#x74;&#x20;&#x64;&#x72;&#x69;&#x76;&#x65;&#x21;&#x27;</div>
+&gt;&gt;&gt; MonsterTruck.drive(brians_car)
+<div class="alt prompt-5">______</div><div class="solution prompt-5">&#x45;&#x72;&#x72;&#x6f;&#x72;&#x20;&#x28;&#x41;&#x74;&#x74;&#x72;&#x69;&#x62;&#x75;&#x74;&#x65;&#x45;&#x72;&#x72;&#x6f;&#x72;&#x29;</div></code></pre>
+          <button id='prompt-5' class='toggleButton prompt'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <pre><code>&gt;&gt;&gt; marvins_car = MonsterTruck(&#x27;Monster&#x27;, &#x27;Batmobile&#x27;)
+&gt;&gt;&gt; marvins_car.drive()
+<div class="alt prompt-6">______</div><div class="solution prompt-6">&#x56;&#x72;&#x6f;&#x6f;&#x6d;&#x21;&#x20;&#x54;&#x68;&#x69;&#x73;&#x20;&#x4d;&#x6f;&#x6e;&#x73;&#x74;&#x65;&#x72;&#x20;&#x54;&#x72;&#x75;&#x63;&#x6b;&#x20;&#x69;&#x73;&#x20;&#x68;&#x75;&#x67;&#x65;&#x21;&#xa;&#x27;&#x4d;&#x6f;&#x6e;&#x73;&#x74;&#x65;&#x72;&#x20;&#x42;&#x61;&#x74;&#x6d;&#x6f;&#x62;&#x69;&#x6c;&#x65;&#x20;&#x67;&#x6f;&#x65;&#x73;&#x20;&#x76;&#x72;&#x6f;&#x6f;&#x6d;&#x21;&#x27;</div>
+&gt;&gt;&gt; Car.drive(marvins_car)
+<div class="alt prompt-6">______</div><div class="solution prompt-6">&#x27;&#x4d;&#x6f;&#x6e;&#x73;&#x74;&#x65;&#x72;&#x20;&#x42;&#x61;&#x74;&#x6d;&#x6f;&#x62;&#x69;&#x6c;&#x65;&#x20;&#x67;&#x6f;&#x65;&#x73;&#x20;&#x76;&#x72;&#x6f;&#x6f;&#x6d;&#x21;&#x27;</div>
+&gt;&gt;&gt; MonsterTruck.drive(marvins_car)
+<div class="alt prompt-6">______</div><div class="solution prompt-6">&#x56;&#x72;&#x6f;&#x6f;&#x6d;&#x21;&#x20;&#x54;&#x68;&#x69;&#x73;&#x20;&#x4d;&#x6f;&#x6e;&#x73;&#x74;&#x65;&#x72;&#x20;&#x54;&#x72;&#x75;&#x63;&#x6b;&#x20;&#x69;&#x73;&#x20;&#x68;&#x75;&#x67;&#x65;&#x21;&#xa;&#x27;&#x4d;&#x6f;&#x6e;&#x73;&#x74;&#x65;&#x72;&#x20;&#x42;&#x61;&#x74;&#x6d;&#x6f;&#x62;&#x69;&#x6c;&#x65;&#x20;&#x67;&#x6f;&#x65;&#x73;&#x20;&#x76;&#x72;&#x6f;&#x6f;&#x6d;&#x21;&#x27;</div>
+&gt;&gt;&gt; Car.rev(marvins_car)
+<div class="alt prompt-6">______</div><div class="solution prompt-6">&#x45;&#x72;&#x72;&#x6f;&#x72;&#x20;&#x28;&#x41;&#x74;&#x74;&#x72;&#x69;&#x62;&#x75;&#x74;&#x65;&#x45;&#x72;&#x72;&#x6f;&#x72;&#x29;</div></code></pre>
+          <button id='prompt-6' class='toggleButton prompt'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <pre><code>&gt;&gt;&gt; class FoodTruck(MonsterTruck):
+...    delicious = &#x27;meh&#x27;
+...    def serve(self):
+...        if FoodTruck.size == &#x27;delicious&#x27;:
+...            print(&#x27;Yum!&#x27;)
+...        if self.food != &#x27;Tacos&#x27;:
+...            return &#x27;But no tacos...&#x27;
+...        else:
+...            return &#x27;Mmm!&#x27;
+&gt;&gt;&gt; taco_truck = FoodTruck(&#x27;Tacos&#x27;, &#x27;Truck&#x27;)
+&gt;&gt;&gt; taco_truck.food = &#x27;Guacamole&#x27;
+&gt;&gt;&gt; taco_truck.serve()
+<div class="alt prompt-7">______</div><div class="solution prompt-7">&#x27;&#x42;&#x75;&#x74;&#x20;&#x6e;&#x6f;&#x20;&#x74;&#x61;&#x63;&#x6f;&#x73;&#x2e;&#x2e;&#x2e;&#x27;</div>
+&gt;&gt;&gt; taco_truck.food = taco_truck.make
+&gt;&gt;&gt; FoodTruck.size = taco_truck.delicious
+&gt;&gt;&gt; taco_truck.serve()
+<div class="alt prompt-7">______</div><div class="solution prompt-7">&#x27;&#x4d;&#x6d;&#x6d;&#x21;&#x27;</div>
+&gt;&gt;&gt; taco_truck.size = &#x27;delicious&#x27;
+&gt;&gt;&gt; taco_truck.serve()
+<div class="alt prompt-7">______</div><div class="solution prompt-7">&#x27;&#x4d;&#x6d;&#x6d;&#x21;&#x27;</div>
+&gt;&gt;&gt; FoodTruck.pop_tire()
+<div class="alt prompt-7">______</div><div class="solution prompt-7">&#x45;&#x72;&#x72;&#x6f;&#x72;</div>
+&gt;&gt;&gt; FoodTruck.pop_tire(taco_truck)
+<div class="alt prompt-7">______</div><div class="solution prompt-7">&#x4e;&#x6f;&#x74;&#x68;&#x69;&#x6e;&#x67;</div>
+&gt;&gt;&gt; taco_truck.drive()
+<div class="alt prompt-7">______</div><div class="solution prompt-7">&#x56;&#x72;&#x6f;&#x6f;&#x6d;&#x21;&#x20;&#x54;&#x68;&#x69;&#x73;&#x20;&#x4d;&#x6f;&#x6e;&#x73;&#x74;&#x65;&#x72;&#x20;&#x54;&#x72;&#x75;&#x63;&#x6b;&#x20;&#x69;&#x73;&#x20;&#x68;&#x75;&#x67;&#x65;&#x21;&#xa;&#x27;&#x54;&#x61;&#x63;&#x6f;&#x73;&#x20;&#x54;&#x72;&#x75;&#x63;&#x6b;&#x20;&#x63;&#x61;&#x6e;&#x6e;&#x6f;&#x74;&#x20;&#x64;&#x72;&#x69;&#x76;&#x65;&#x21;&#x27;</div></code></pre>
+          <button id='prompt-7' class='toggleButton prompt'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <p>With OOP be aware of three types of variables:</p>
+
+          <p><strong>Notice: Local variables has two examples</strong></p>
+
+          <table class='table table-bordered'>
+            <tr>
+              <th></th>
+            <th>Instance Attributes</th>
+              <th>Class Attributes</th>
+              <th>Local Variable</th>
+            </tr>
+            <tr>
+              <td>Traits</td>
+              <td>- Will be accessible after method calls. <br>
+                - Each instance of a class keeps its own version of the instance attribute
+              </td>
+              <td>- Will be accessible after method calls. <br>
+                - All instances of a class will share the same class attributes.
+              </td>
+              <td>- Will not be accessible after method or function calls. <br>
+                - Just like the variables in normal functions.<br>
+              </td>
+            </tr>
+            <tr>
+              <td>Examples</td>
+              <td>
+                <pre><code>>>> car1 = Car('red')
+>>> car2 = Car('blue')
+>>> car1.color
+'red'
+>>> car2.color
+'blue'
+>>> car1.color = 'yellow'
+>>> car1.color
+'yellow'
+>>> car2.color
+'blue' </code></pre>
+              </td>
+              <td>
+                <pre><code>>>> car1 = Car('red')
+>>> car2 = Car('blue')
+>>> car1.num_wheels
+4
+>>> car2.num_wheels
+4
+>>> Car.num_wheels = 2
+>>> car1.num_wheels
+2
+>>> car2.num_wheels
+2
+</code></pre>
+              </td>
+              <td>
+                <pre><code>def __init__(self, model_type):
+    self.wheels = Car.num_wheels
+    self.color = "No color yet.
+    You need to paint me."
+    self.model = model_type
+
+def method(self):
+    x = 5
+</code></pre>
+            </tr>
+            <tr>
+              <td>Explanations</td>
+              <td>
+                We construct two <code>Car</code> instances. Each has its own
+                <code>self.color</code> instance attribute/variable. One is
+                <code>'red'</code>, and the other is <code>'blue'</code>.
+              </td>
+              <td>
+                <code>num_wheels</code> is a class attribute of the <code>Car</code> class.
+              </td>
+              <td>
+                <code>model_type</code> is a local variable. It is not accessible
+                outside of the <code>__init__</code> method. In contrast,
+                <code>self.model</code> is an instance variable that is accessible
+                everywhere. <code>x</code> is also a local variable.
+              </td>
+            </tr>
+          </table>
+
+          <p><strong>Note</strong>: Access class attributes by <code>&lt;class name&gt;.&lt;attribute&gt;</code>, such as
+            <code>Car.num_wheels</code>, or by <code>&lt;instance&gt;.&lt;attribute&gt;</code>, such as <code>car1.num_wheels</code>.</p>
+
+
+          <h1 id="required-questions">Required Questions</h1>
+<h1>Complete the Adventure Game!</h2>
+
+
+          <p>In this lab, you will implement a text adventure game. To start the game, type</p>
+
+      <pre><code>python3 -i lab07.py</code></pre>
+
+
+
+          <h3 class="question" id="q2">Required Question 1</h3>
+
+          <p>It is time for you to enter a world of adventure! First, you need to create
+            yourself as a <code>Player</code> object in <code>lab07.py</code>. Take a look at the <code>Player</code> class in
+            <code>lab07.py</code> and create a <code>Player</code> object.</p>
+
+          <p>The <code>Player</code> constructor takes two arguments:</p>
+
+          <ul>
+            <li><code>name</code> should be your preferred name (as a string)</li>
+            <li>the starting <code>place</code></li>
+          </ul>
+
+          <p>Your <code>Player</code> should start at <code>tuc</code>.</p>
+
+
+          <pre><code># Game Player:
+# Create a game player with your name and who starts game at tuc.
+<div class="alt 0">me = None
+</div>
+</pre></code>
+
+          <h3 class="question" id="q3">Required Question 2</h3>
+
+          <p>Once you've created your player, you can start the adventure game:</p>
+
+    <pre><code>python3 -i lab07.py</code></pre>
+
+          <p>You will see the following output:</p>
+
+          <pre><code>Welcome to the adventure game!
+
+It&#x27;s a bright sunny day.
+You are a cute little squirrel named [your name],
+wandering around UC campus looking for food.
+
+Let&#x27;s go to CCM (CCM Cafe)
+and see what we can find there!
+
+There are 6 possible commands:
+    talk to [character]
+    help
+    take [thing]
+    go to [direction]
+    look
+    check backpack
+
+adventure&gt;</code></pre>
+
+
+          <p>First, we need to be able to go to places. If you try the <code>go</code> command, you'll
+            notice it doesn't do anything.</p>
+
+        <p>In <code>lab07.py</code>, implement the <code>go_to</code> method in the <code>Player</code> class. <code>go_to</code> takes in
+            a <code>direction</code> that you want to go to.</p>
+
+          <blockquote><p><em>Hint</em>: The <code>exit_to</code> method in <code>Place</code> will return the corresponding <code>Place</code>
+            object if <code>direction</code> is among your available exits.  Otherwise, <code>exit_to</code>
+            will return the current <code>Place</code>. Take a look at the doctest for more details.</p></blockquote>
+
+
+
+          <pre><code>def go_to(self, direction):
+    &quot;&quot;&quot;Go to direction if it&#x27;s among the exits of player&#x27;s current place.
+    &gt;&gt;&gt; tuc = Place(&#x27;Tangeman University Center&#x27;, &#x27;You are at Tangeman University Center&#x27;, [], [])
+    &gt;&gt;&gt; bcc = Place(&#x27;BCC&#x27;, &#x27;You are at Bearcat Cafe&#x27;, [], [])
+    &gt;&gt;&gt; tuc.add_exits([bcc])
+    &gt;&gt;&gt; bcc.add_exits([tuc])
+    &gt;&gt;&gt; me = Player(&#x27;player&#x27;, tuc)
+    &gt;&gt;&gt; me.go_to(&#x27;BCC&#x27;)
+    You are at Bearcat Cafe
+    &gt;&gt;&gt; me.place.name
+    &#x27;BCC&#x27;
+    &gt;&gt;&gt; me.go_to(&#x27;BCC&#x27;)
+    Can&#x27;t go to BCC from BCC.
+    Try looking around to see where to go.
+    &gt;&gt;&gt; me.go_to(&#x27;Tangeman University Center&#x27;)
+    You are at Tangeman University Center
+    &quot;&quot;&quot;
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+</div>
+</pre></code>
+          <h3 class="question" id="q4">Required Question 3</h3>
+
+          <p>Now you can go wherever you want! Try going to Rhodes Hall. There, you'll find
+            Derrick. Try talking to him with the <code>talk to</code> command. This also doesn't work
+            :(</p>
+
+          <p>Next, implement the <code>talk_to</code> method in <code>Player</code>. <code>talk_to</code> takes in the name of
+            a <code>Character</code> object, and prints out the <code>Character</code>'s response. Take a look at
+            the doctest for more details.</p>
+
+          <blockquote><p><em>Hint</em>: <code>talk_to</code> takes in an argument <code>person</code>, which is a string. The <code>characters</code>
+            instance attribute in <code>self.place</code> is a dictionary mapping <code>Character</code> names
+            (strings) to <code>Character</code> objects.</p>
+
+            <p>Once you've got the <code>Character</code> object, what method in the <code>Character</code> class
+              will make them talk?</p></blockquote>
+
+
+          <pre><code>def talk_to(self, person):
+    &quot;&quot;&quot;Talk to person if person is at player&#x27;s current place.
+
+    &gt;&gt;&gt; john = Character(&#x27;John&#x27;, &#x27;Have to run for lecture!&#x27;)
+    &gt;&gt;&gt; tuc1 = Place(&#x27;TUC&#x27;, &#x27;You are at Tangeman University Center&#x27;, [john], [])
+    &gt;&gt;&gt; me = Player(&#x27;player&#x27;, tuc1)
+    &gt;&gt;&gt; me.talk_to(john)
+    Person has to be a string.
+    &gt;&gt;&gt; me.talk_to(&#x27;John&#x27;)
+    John says: Have to run for lecture!
+    &gt;&gt;&gt; me.talk_to(&#x27;Albert&#x27;)
+    Albert is not here.
+    &quot;&quot;&quot;
+    if type(person) != str:
+        print(&#x27;Person has to be a string.&#x27;)
+<div class="alt solution-3">    "*** YOUR CODE HERE ***"
+</div>
+</pre></code>
+          <h3 class="question" id="q5">Required Question 4</h3>
+
+        <p>Now you can talk to people in adventure world! To make it even better, let's
+            implement the <code>take</code> method in the <code>Player</code> class. <code>take</code> takes in a <code>Thing</code>
+            object and puts it into your <code>backpack</code>.  Currently, you don't have a backpack,
+            so let's create an instance variable <code>backpack</code> and initialize it to an empty
+            list.</p>
+
+          <p>After you've done initialized your empty <code>backpack</code>, take a look at the doctests
+            for <code>take</code> and implement the method.</p>
+
+          <blockquote><p><em>Hint</em>: the <code>things</code> instance attribute in the <code>Place</code> class is a dictionary
+            that maps <code>Thing</code> names (strings) to <code>Thing</code> objects.</p>
+
+            <p>The <code>take</code> method in the <code>Place</code> class will also come in handy.</p></blockquote>
+
+
+
+          <pre><code>def take(self, thing):
+    &quot;&quot;&quot;Take a thing if thing is at player&#x27;s current place
+    &gt;&gt;&gt; hotdog = Thing(&#x27;Hotdog&#x27;, &#x27;A hot looking hotdog&#x27;)
+    &gt;&gt;&gt; bcc = Place(&#x27;BCC&#x27;, &#x27;You are at Bearcat Cafe&#x27;, [], [hotdog])
+    &gt;&gt;&gt; me = Player(&#x27;Player&#x27;, bcc)
+    &gt;&gt;&gt; me.backpack
+    []
+    &gt;&gt;&gt; me.take(hotdog)
+    Thing should be a string.
+    &gt;&gt;&gt; me.take(&#x27;dog&#x27;)
+    dog is not here.
+    &gt;&gt;&gt; me.take(&#x27;Hotdog&#x27;)
+    Player takes the Hotdog
+    &gt;&gt;&gt; me.take(&#x27;Hotdog&#x27;)
+    Hotdog is not here.
+    &gt;&gt;&gt; type(me.backpack[0])
+    &lt;class &#x27;Thing&#x27;&gt;
+    &quot;&quot;&quot;
+    if type(thing) != str:
+        print(&#x27;Thing should be a string.&#x27;)
+<div class="alt 3">    return None   # Replace this line
+
+</code></pre>
+          <h3 class="question" id="q6">Winning the Game!</h3>
+
+          <p>Good job! Now you can explore around campus and try to win the game. Talk to the
+            people at different places in order to get hints. Can you save the day and make
+            it to the potluck in time?</p>
+
+          <p>Enjoy!</p>
+
+
+        </div>
+
+      </div>
+    </div>
+  </body>
+  <script>
+    $('.sidebar ul').addClass('nav nav-stacked');
+    $('body').scrollspy({
+      target: '.sidebar',
+      offset: 40
+    });
+  </script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script>
+    $(function() {
+    if (new Date("07/17/2015") < new Date()) {
+        $('.toggleButton').css('display', 'inline-block');
+        $('.toggleButton').click(function() {
+          var solution_id = $(this).attr('id');
+          $('div.' + solution_id).slideToggle(600);
+        });
+      }
+      // Always display these toggle buttons
+      $('.toggleButtonShow').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    });
+  </script>
+</html>

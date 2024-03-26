@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<!-- modified from url=(0037)http://cs61a.org/lab/lab03/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="CS:2021 Python Programming">
+  <meta name="keywords" content="CS2021, EECS">
+  <meta name="author" content="cs2021">
+
+  <meta name="viewport" content="width=device-width">
+
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="mono-blue.css">
+  <script src="highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="resource.css">
+
+  <link rel="stylesheet" type="text/css" href="lab.css">
+
+
+  <title>Lab 4: Lists  | CS 2021 Fall 2019</title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">CS 2021: Lab04 Interactive Worksheet</a>
+        </div>
+
+        
+      </div>
+    </nav>
+
+    <div id="content" class="container">
+      <div class='row'>
+        <div class='col-md-9'>
+          <div class='page-header'>
+            <h1><span class="content-title-brand">Lab 4</span>: Lists </h1>
+          </div>
+      
+
+
+          <h3 class="question" id="q1">Question 1: List indexing</h3>
+
+          <p>Predict what Python will display when you type the following into the
+            interpreter. Then try it to check your answers.</p>
+
+
+          <pre><code>&gt;&gt;&gt; x = [1, 2, 3]
+&gt;&gt;&gt; x[0]
+<div class="alt 11">______</div><div class="solution 11">&#x31;</div>
+&gt;&gt;&gt; x[2]
+<div class="alt 11">______</div><div class="solution 11">&#x33;</div>
+&gt;&gt;&gt; x[3]
+<div class="alt 11">______</div><div class="solution 11">&#x49;&#x6e;&#x64;&#x65;&#x78;&#x45;&#x72;&#x72;&#x6f;&#x72;</div>
+&gt;&gt;&gt; x[&#x2d;1]
+<div class="alt 11">______</div><div class="solution 11">&#x33;</div>
+&gt;&gt;&gt; x[&#x2d;3]
+<div class="alt 11">______</div><div class="solution 11">&#x31;</div></code></pre>
+
+          <button id='11' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <h3 class="question" id="q2">Question 2: List slicing</h3>
+
+          <p>Predict what Python will display when you type the following into the
+            interpreter. Then try it to check your answers.</p>
+
+
+          <pre><code>&gt;&gt;&gt; x = [1, 2, 3, 4]
+&gt;&gt;&gt; x[1:3]
+<div class="alt 12">______</div><div class="solution 12">&#x5b;&#x32;&#x2c;&#x20;&#x33;&#x5d;</div>
+&gt;&gt;&gt; x[:2]
+<div class="alt 12">______</div><div class="solution 12">&#x5b;&#x31;&#x2c;&#x20;&#x32;&#x5d;</div>
+&gt;&gt;&gt; x[1:]
+<div class="alt 12">______</div><div class="solution 12">&#x5b;&#x32;&#x2c;&#x20;&#x33;&#x2c;&#x20;&#x34;&#x5d;</div>
+&gt;&gt;&gt; x[&#x2d;2:3]
+<div class="alt 12">______</div><div class="solution 12">&#x5b;&#x33;&#x5d;</div>
+&gt;&gt;&gt; x[&#x2d;2:4]
+<div class="alt 12">______</div><div class="solution 12">&#x5b;&#x33;&#x2c;&#x20;&#x34;&#x5d;</div>
+&gt;&gt;&gt; x[0:4:2]
+<div class="alt 12">______</div><div class="solution 12">&#x5b;&#x31;&#x2c;&#x20;&#x33;&#x5d;</div>
+&gt;&gt;&gt; x[::&#x2d;1]
+<div class="alt 12">______</div><div class="solution 12">&#x5b;&#x34;&#x2c;&#x20;&#x33;&#x2c;&#x20;&#x32;&#x2c;&#x20;&#x31;&#x5d;</div></code></pre>
+
+          <button id='12' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <p>Python can retrieve part of a list by <em>slicing</em>.</p>
+
+          <p>We can write <code>[start:end:step]</code> to slice a list.</p>
+
+          <ul>
+            <li><code>start</code>: the index for the beginning of the slice</li>
+            <li><code>end</code>: the index for the end of the slice</li>
+            <li><code>step</code>: how big your step size is</li>
+          </ul>
+
+          <p>Using negative indices for <code>start</code> and <code>end</code> behaves the same way
+            as indexing into negative indices. Negative <code>step</code> means to move 
+            backwards.</p>
+
+          <p>Slicing a list <em>creates a new</em> list, without modifying
+            the original list.</p>
+
+          <h3 class="question" id="q3">Question 3: List operations</h3>
+
+          <p>Predict what Python will display when you type the following into the
+            interpreter. Then try it to check your answers.</p>
+
+
+          <pre><code>&gt;&gt;&gt; y = [1]
+&gt;&gt;&gt; len(y)
+<div class="alt 13">______</div><div class="solution 13">&#x31;</div>
+&gt;&gt;&gt; 1 in y
+<div class="alt 13">______</div><div class="solution 13">&#x54;&#x72;&#x75;&#x65;</div>
+&gt;&gt;&gt; y + [2, 3]
+<div class="alt 13">______</div><div class="solution 13">&#x5b;&#x31;&#x2c;&#x20;&#x32;&#x2c;&#x20;&#x33;&#x5d;</div>
+&gt;&gt;&gt; [0] + y
+<div class="alt 13">______</div><div class="solution 13">&#x5b;&#x30;&#x2c;&#x20;&#x31;&#x5d;</div>
+&gt;&gt;&gt; y * 3
+<div class="alt 13">______</div><div class="solution 13">&#x5b;&#x31;&#x2c;&#x20;&#x31;&#x2c;&#x20;&#x31;&#x5d;</div>
+&gt;&gt;&gt; z = [[1, 2], [3, 4, 5]]
+&gt;&gt;&gt; len(z)
+<div class="alt 13">______</div><div class="solution 13">&#x32;</div></code></pre>
+
+          <button id='13' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <h3 class="question" id="q4">Question 4: Fill in the blanks</h3>
+
+          <p>Fill in the blanks for the following lines so that each expression
+            evaluates to the expected output: 
+            <prompt></p>
+
+          <pre><code>&gt;&gt;&gt; x = [1, 3, [5, 7], 9]
+&gt;&gt;&gt; _______________
+7
+&gt;&gt;&gt; x = [[7]]
+&gt;&gt;&gt; _______________
+7
+&gt;&gt;&gt; x = [1, [2, [3, [4, [5, [6, [7]]]]]]]
+&gt;&gt;&gt; _______________
+7</code></pre>
+
+          </prompt>
+
+
+        <button id='16' class='toggleButtonShow'>
+          Toggle Explanation<noscript> (enable JavaScript)</noscript>
+        </button>
+        <div class="solution 16">
+
+          <ul>
+            <li><code>x[2][1]</code></li>
+            <li><code>x[0][0]</code></li>
+            <li><code>x[1][1][1][1][1][1][0]</code>
+            </div></li>
+        </ul>
+
+      <h3 class="question" id="q5">Question 5: Reverse (iteratively)</h3>
+
+      <p>Write a function <code>reverse_iter</code> that takes a list and returns a new
+        list that is the reverse of the original. Use iteration! You may also
+        use slicing notation. Do not use <code>lst[::&#x2d;1]</code>!</p>
+
+
+
+      <pre><code>def reverse_iter(lst):
+    &quot;&quot;&quot;Returns the reverse of the given list.
+
+    &gt;&gt;&gt; reverse_iter([1, 2, 3, 4])
+    [4, 3, 2, 1]
+    &quot;&quot;&quot;
+<div class="alt 0">    "*** YOUR CODE HERE ***"
+</div><div class="solution 0">&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x2c;&#x20;&#x69;&#x20;&#x3d;&#x20;&#x5b;&#x5d;&#x2c;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x69;&#x20;&#x3c;&#x20;&#x6c;&#x65;&#x6e;&#x28;&#x6c;&#x73;&#x74;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x6e;&#x65;&#x77;&#x20;&#x3d;&#x20;&#x5b;&#x6c;&#x73;&#x74;&#x5b;&#x69;&#x5d;&#x5d;&#x20;&#x2b;&#x20;&#x6e;&#x65;&#x77;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x20;&#x2b;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x6e;&#x65;&#x77;</div></code></pre>
+
+
+      <button id='0' class='toggleButton'>
+        Toggle Solution<noscript> (enable JavaScript)</noscript>
+      </button>
+
+
+      <h3 class="question" id="q6">Question 6: Reverse (recursively)</h3>
+
+      <p>Write a function <code>reverse_recursive</code> that takes a list and returns a
+        new list that is the reverse of the original. Use recursion! You may
+        also use slicing notation. Do not use <code>lst[::&#x2d;1]</code>!</p>
+
+
+
+      <pre><code>def reverse_recursive(lst):
+    &quot;&quot;&quot;Returns the reverse of the given list.
+
+    &gt;&gt;&gt; reverse_recursive([1, 2, 3, 4])
+    [4, 3, 2, 1]
+    &quot;&quot;&quot;
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x6f;&#x74;&#x20;&#x6c;&#x73;&#x74;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x5b;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x72;&#x65;&#x76;&#x65;&#x72;&#x73;&#x65;&#x5f;&#x72;&#x65;&#x63;&#x75;&#x72;&#x73;&#x69;&#x76;&#x65;&#x28;&#x6c;&#x73;&#x74;&#x5b;&#x31;&#x3a;&#x5d;&#x29;&#x20;&#x2b;&#x20;&#x5b;&#x6c;&#x73;&#x74;&#x5b;&#x30;&#x5d;&#x5d;</div></code></pre>
+
+
+      <button id='1' class='toggleButton'>
+        Toggle Solution<noscript> (enable JavaScript)</noscript>
+      </button>
+
+
+      <h2 id="sequences">Sequences and For Loops</h2>
+
+
+      <p>Sequences are ordered collections of values that support element-selection and
+        have length. The most common sequence we work with are lists, but many  other Python types are sequences as well, including strings.</p>
+
+      <p>
+        Sequences are of key importance in Python programming since they are considered <code> iterable objects</code> and can be used freely in <code> for loops. </code>
+      </p>
+      
+      <p>Here are a few powerful higher-order functions that process
+        sequences:</p>
+
+      <ul>
+        <li><code>map(fn, seq)</code>: applies a function <code>fn</code> onto every element in the
+          given sequence <code>seq</code>.</li>
+        <li><code>filter(cond, seq)</code>: keeps elements in the sequence <code>seq</code> only if
+          those elements satisfy the condition function <code>cond</code> (that is, for
+          an element <code>x</code>, keep it only if <code>cond(x)</code> is True).</li>
+        <li><code>reduce(combiner, seq)</code>: combines all elements in the sequence <code>seq</code>
+          with the <code>combiner</code> function (which must take two arguments), starting from the first two <code>seq[0], seq[1]</code> initial values of seq.</li>
+      </ul>
+
+      <p><strong>Notes:</strong> When working with higher-order functions we often create in-line <code>lambda expressions,</code> allowing us to create simple functions without defining them with a name. Such lambda expressions consist of a list of arguments and a simple expression, e.g., the addition function with two arguments is written <code>lambda x, y: x + y</code>. <br>
+        The higher-order   <code>map</code> and <code>filter</code> functions are built-in to <em>python3</em> but <code>reduce</code> is in the <code>functools</code> package.
+        You must import <code>reduce</code> from <code>functools</code> like this:</p>
+
+      <pre><code>&gt;&gt;&gt; from functools import reduce
+&gt;&gt;&gt; reduce(lambda x, y: x + y, [1, 2, 3])
+6</code></pre>
+
+      <p><strong>Note:</strong> <code>map</code> and <code>filter</code> do not return lists. Instead, <code>map</code> returns a <code>map</code>
+        object and <code>filter</code> returns a <code>filter</code> object. We can convert these objects to
+        lists by using the <code>list</code> constructor:</p>
+
+      <pre><code>&gt;&gt;&gt; map(lambda x: x * x, [1, 2, 3, 4])
+&lt;map object at ...&gt;
+&gt;&gt;&gt; list(map(lambda x: x * x, [1, 2, 3, 4]))
+[1, 4, 9, 16]</code></pre>
+
+      <h3 class="question" id="q7">Question 7: Map, Filter, Reduce</h3>
+
+      <p>As an exercise, implement three functions <code>map</code>, <code>filter</code>, and <code>reduce</code>
+        to behave like their built-in counterparts. For <code>map</code> and <code>filter</code>, you
+        can return the results as Python lists.</p>
+
+
+
+      <pre><code>def map(fn, seq):
+    &quot;&quot;&quot;Applies fn onto each element in seq and returns a list.
+
+    &gt;&gt;&gt; map(lambda x: x*x, [1, 2, 3])
+    [1, 4, 9]
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x20;&#x3d;&#x20;&#x5b;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x65;&#x6c;&#x65;&#x6d;&#x20;&#x69;&#x6e;&#x20;&#x73;&#x65;&#x71;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x20;&#x2b;&#x3d;&#x20;&#x5b;&#x66;&#x6e;&#x28;&#x65;&#x6c;&#x65;&#x6d;&#x29;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;</div>
+def filter(pred, seq):
+    &quot;&quot;&quot;Keeps elements in seq only if they satisfy pred.
+
+    &gt;&gt;&gt; filter(lambda x: x % 2 == 0, [1, 2, 3, 4])
+    [2, 4]
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x20;&#x3d;&#x20;&#x5b;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x65;&#x6c;&#x65;&#x6d;&#x20;&#x69;&#x6e;&#x20;&#x73;&#x65;&#x71;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x70;&#x72;&#x65;&#x64;&#x28;&#x65;&#x6c;&#x65;&#x6d;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;&#x20;&#x2b;&#x3d;&#x20;&#x5b;&#x65;&#x6c;&#x65;&#x6d;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x72;&#x65;&#x73;&#x75;&#x6c;&#x74;</div>
+def reduce(combiner, seq):
+    &quot;&quot;&quot;Combines elements in seq using combiner.
+
+    &gt;&gt;&gt; reduce(lambda x, y: x + y, [1, 2, 3, 4])
+    10
+    &gt;&gt;&gt; reduce(lambda x, y: x * y, [1, 2, 3, 4])
+    24
+    &gt;&gt;&gt; reduce(lambda x, y: x * y, [4])
+    4
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x74;&#x6f;&#x74;&#x61;&#x6c;&#x20;&#x3d;&#x20;&#x73;&#x65;&#x71;&#x5b;&#x30;&#x5d;&#xa;&#x20;&#x20;&#x20;&#x20;&#x66;&#x6f;&#x72;&#x20;&#x65;&#x6c;&#x65;&#x6d;&#x20;&#x69;&#x6e;&#x20;&#x73;&#x65;&#x71;&#x5b;&#x31;&#x3a;&#x5d;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x74;&#x6f;&#x74;&#x61;&#x6c;&#x20;&#x3d;&#x20;&#x63;&#x6f;&#x6d;&#x62;&#x69;&#x6e;&#x65;&#x72;&#x28;&#x74;&#x6f;&#x74;&#x61;&#x6c;&#x2c;&#x20;&#x65;&#x6c;&#x65;&#x6d;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x74;&#x6f;&#x74;&#x61;&#x6c;</div></code></pre>
+
+
+      <button id='2' class='toggleButton'>
+        Toggle Solution<noscript> (enable JavaScript)</noscript>
+      </button>
+
+
+      <h3 id="list-comprehension">List Comprehension</h3>
+
+
+      <p>A <code>list comprehension</code> is Python syntax for quickly creating lists. List comprehensions are a very important part of Python syntax, which combines the following three higher level operations in a single statment. </p>
+
+      <ul>
+        <li><strong>For loop</strong>: identifying a sequence to iterate over</li>
+        <li><strong>Map expression</strong>: what to do to each element in sequence</li>
+        <li><strong>Filter expression</strong>: which elements to keep (optional)</li>
+      </ul>
+
+      <p>You should notice that in every list comprehension the map expression comes first, then the for loop expression, and ends with an optional filter expression. For example:</p>
+
+      <pre><code>&gt;&gt;&gt; seq = [1, 2, 3, 4]
+&gt;&gt;&gt; [x * x for x in seq if x % 2 == 0]
+[4, 16]</code></pre>
+
+      <h3 class="question" id="q8">Question 8: What would Python print?</h3>
+
+      <p>What would Python print? Try to figure it out before
+        you type it into the interpreter!</p>
+
+
+      <pre><code>&gt;&gt;&gt; [x*x for x in range(5)]
+<div class="alt 14">______</div><div class="solution 14">&#x5b;&#x30;&#x2c;&#x20;&#x31;&#x2c;&#x20;&#x34;&#x2c;&#x20;&#x39;&#x2c;&#x20;&#x31;&#x36;&#x5d;</div>
+&gt;&gt;&gt; [n for n in range(10) if n % 2 == 0]
+<div class="alt 14">______</div><div class="solution 14">&#x5b;&#x30;&#x2c;&#x20;&#x32;&#x2c;&#x20;&#x34;&#x2c;&#x20;&#x36;&#x2c;&#x20;&#x38;&#x5d;</div>
+&gt;&gt;&gt; ones = [1 for i in [&quot;hi&quot;, &quot;bye&quot;, &quot;you&quot;]]
+&gt;&gt;&gt; ones + [str(i) for i in [6, 3, 8, 4]]
+<div class="alt 14">______</div><div class="solution 14">&#x5b;&#x31;&#x2c;&#x20;&#x31;&#x2c;&#x20;&#x31;&#x2c;&#x20;&#x27;&#x36;&#x27;&#x2c;&#x20;&#x27;&#x33;&#x27;&#x2c;&#x20;&#x27;&#x38;&#x27;&#x2c;&#x20;&#x27;&#x34;&#x27;&#x5d;</div>
+&gt;&gt;&gt; [i+5 for i in [n for n in range(1,4)]]
+<div class="alt 14">______</div><div class="solution 14">&#x5b;&#x36;&#x2c;&#x20;&#x37;&#x2c;&#x20;&#x38;&#x5d;</div></code></pre>
+
+      <button id='14' class='toggleButton'>
+        Toggle Solution<noscript> (enable JavaScript)</noscript>
+      </button>
+
+
+   <h3 id="list-comprehension">Nested Lists and List Type Checking</h3>
+<p>
+A nested list is a list that appears as an element in another list. In this list, the element with index 3 is a nested list:
+
+<code><pre>>>> nested = ["hello", 2.0, 5, [10, 20]]
+>>> print(nested[3])
+[10, 20]
+>>> elem = nested[3]
+>>> elem[0]
+10
+>>> nested[3][1]
+20
+</code></pre>
+Bracket operators evaluate from left to right.
+
+You can check if an object is a list (or other type) by using the built-in type function. For example,
+<code><pre>>>> type(3) == list
+False
+>>> type([1, 2, 3]) == list
+True
+>>> type(nested) == list
+True
+>>> type(nested[2]) == list
+False
+>>> type(nested[3]) == list
+True
+</code></pre>
+Using recursion and the type function, write a function which flattens a given list.
+<code><pre>def flatten(lst):
+    """Returns a flattened version of lst.
+
+    >>> flatten([1, 2, 3]) 
+    [1, 2, 3]
+    >>> x = [1, [2, 3], 4]      
+    >>> flatten(x)
+    [1, 2, 3, 4]
+    >>> x = [[1, [1, 1]], 1, [1, 1]] 
+    >>> flatten(x)
+    [1, 1, 1, 1, 1, 1]
+    """
+</code></pre>
+
+    </div>
+  </div>
+</body>
+<script>
+  $('.sidebar ul').addClass('nav nav-stacked');
+  $('body').scrollspy({
+    target: '.sidebar',
+    offset: 40
+  });
+</script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script>
+  $(function() {
+    if (new Date("07/08/2015 ") < new Date()) {
+      $('.toggleButton').css('display', 'inline-block');
+      $('.toggleButton').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    }
+    // Always display these toggle buttons
+    $('.toggleButtonShow').click(function() {
+      var solution_id = $(this).attr('id');
+      $('div.' + solution_id).slideToggle(600);
+    });
+  });
+</script>
+</html>

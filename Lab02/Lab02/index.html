@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="CS:2021 Python Programming">
+  <meta name="keywords" content="CS2021, EECS">
+  <meta name="author" content="cs2021">
+
+  <meta name="viewport" content="width=device-width">
+
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="mono-blue.css">
+  <script src="highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="resource.css">
+
+  <link rel="stylesheet" type="text/css" href="lab.css">
+
+
+
+
+  <title>CS2021 Module 2 Lab Sheet: Higher Order Functions </title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">CS2021 Module 2 Lab Sheet</a>
+        </div>
+
+
+
+      </div>
+    </nav>
+
+    <div id="content" class="container">
+      <div class='row'>
+        <div class='col-md-9'>
+          <div class='page-header'>
+          <h1><span class="content-title-brand">Lab 2</span>: Higher-Order Functions </h1>
+          </div>
+
+          <p><i>Due at end of Week 2 - 11:59pm on Friday.</i></p>
+
+
+
+
+          <h2 id="higher-order-functions">Higher Order Functions</h2>
+
+
+          <p>Higher order functions are functions that take a function as an input,
+            and/or output a function. We will be exploring many applications of
+            higher order functions.</p>
+
+          <h3 class="question" id="q1">Question 1: What would Python print?</h3>
+
+
+          <pre><code>&gt;&gt;&gt; def square(x):
+...     return x * x
+...
+&gt;&gt;&gt; def neg(f, x):
+...     return &#x2d;f(x)
+...
+&gt;&gt;&gt; neg(square, 4)
+<div class="alt 6">______</div><div class="solution 6">&#x2d;&#x31;&#x36;</div></code></pre>
+
+          <button id='6' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <h3 class="question" id="q2">Question 2: What would Python print?</h3>
+
+
+          <pre><code>&gt;&gt;&gt; def even(f):
+...     def odd(x):
+...         if x &lt; 0:
+...             return f(&#x2d;x)
+...         return f(x)
+...     return odd
+...
+&gt;&gt;&gt; def identity(x):
+...     return x
+...
+&gt;&gt;&gt; triangle = even(identity)
+&gt;&gt;&gt; triangle
+<div class="alt 7">______</div><div class="solution 7">&#x3c;&#x66;&#x75;&#x6e;&#x63;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#x2e;&#x2e;&#x2e;&#x3e;&#x20;</div>
+&gt;&gt;&gt; triangle(61)
+<div class="alt 7">______</div><div class="solution 7">&#x36;&#x31;</div>
+&gt;&gt;&gt; triangle(&#x2d;4)
+<div class="alt 7">______</div><div class="solution 7">&#x34;</div></code></pre>
+
+          <button id='7' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <h3 class="question" id="q3">Question 3: What would Python print?</h3>
+
+
+          <pre><code>&gt;&gt;&gt; def first(x):
+...     x += 8
+...     def second(y):
+...         print(&#x27;second&#x27;)
+...         return x + y
+...     print(&#x27;first&#x27;)
+...     return second
+...
+&gt;&gt;&gt; f = first(15)
+<div class="alt 8">______</div><div class="solution 8">&#x66;&#x69;&#x72;&#x73;&#x74;</div>
+&gt;&gt;&gt; f
+<div class="alt 8">______</div><div class="solution 8">&#x3c;&#x66;&#x75;&#x6e;&#x63;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#x2e;&#x2e;&#x2e;&#x3e;</div>
+&gt;&gt;&gt; f(16)
+<div class="alt 8">______</div><div class="solution 8">&#x73;&#x65;&#x63;&#x6f;&#x6e;&#x64;&#xa;&#x33;&#x39;</div></code></pre>
+
+          <button id='8' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <h3 class="question" id="q4">Question 4: Temperature Converter</h3>
+
+          <p>Write a function that converts Fahrenheit to Celsius and another function that
+            converts Celsius to Fahrenheit.</p>
+
+          <p>The formulas are as follows:</p>
+
+          <ul>
+            <li>Celsius x 9 / 5 + 32 = Fahrenheit</li>
+            <li>(Fahrenheit - 32) x 5 / 9 = Celsius</li>
+          </ul>
+
+
+
+          <pre><code>def f_to_c(fahrenheit):
+    &quot;&quot;&quot;Converts Fahrenheit to Celsius
+
+    &gt;&gt;&gt; f_to_c(14)
+    &#x2d;10.0
+    &gt;&gt;&gt; f_to_c(68)
+    20.0
+    &gt;&gt;&gt; f_to_c(&#x2d;31)
+    &#x2d;35.0
+    &quot;&quot;&quot;
+<div class="alt 0">    "*** YOUR CODE HERE ***"
+</div><div class="solution 0">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x28;&#x66;&#x61;&#x68;&#x72;&#x65;&#x6e;&#x68;&#x65;&#x69;&#x74;&#x20;&#x2d;&#x20;&#x33;&#x32;&#x29;&#x20;&#x2a;&#x20;&#x35;&#x20;&#x2f;&#x20;&#x39;</div>
+def c_to_f(celsius):
+    &quot;&quot;&quot;Converts Celsius to Fahrenheit
+
+    &gt;&gt;&gt; c_to_f(0)
+    32.0
+    &gt;&gt;&gt; c_to_f(5)
+    41.0
+    &gt;&gt;&gt; c_to_f(&#x2d;25)
+    &#x2d;13.0
+    &quot;&quot;&quot;
+<div class="alt 0">    "*** YOUR CODE HERE ***"
+</div><div class="solution 0">&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x28;&#x63;&#x65;&#x6c;&#x73;&#x69;&#x75;&#x73;&#x29;&#x20;&#x2a;&#x20;&#x39;&#x20;&#x2f;&#x20;&#x35;&#x20;&#x2b;&#x20;&#x33;&#x32;</div></code></pre>
+
+
+          <button id='0' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+          <h3 class="question" id="q5">Question 5: Temperature Converters Combined!</h3>
+
+          <p>Implement <code>dispatch_function</code>, which takes in two functions (<code>f1</code> and <code>f2</code>) and
+            two strings (<code>option1</code> and <code>option2</code>).  <code>dispatch_function</code> returns a function
+            that does the following:</p>
+
+          <ul>
+            <li>Takes an <code>option</code> (a string) and a <code>number</code> as its two parameters</li>
+            <li>Asserts that <code>option</code> is either <code>option1</code> or <code>option2</code> (using an <code>assert</code> statement)</li>
+            <li>Calls the corresponding function (<code>f1</code> or <code>f2</code>) on the given <code>number</code></li>
+          </ul>
+
+          <blockquote><p>An <code>assert</code> statement checks if a statement is true.  If it is false it will
+            raise an error.  This is a quick way to check for unexpected inputs.  For
+            example, the following <code>assert</code> statement ensures <code>x</code> won't be zero.</p>
+
+            <pre><code>def no_zero_division(x):
+    assert x != 0
+    return 2 / x</code></pre>
+
+            <p>If <code>no_zero_division</code> is called with <code>x = 0</code>, an <code>AssertionError</code> occurs:</p>
+
+            <pre><code>&gt;&gt;&gt; no_zero_division(0):
+AssertionError</code></pre></blockquote>
+
+
+
+          <pre><code>def dispatch_function(option1, f1, option2, f2):
+    &quot;&quot;&quot;Takes in two options and two functions. Returns a function that takes in
+    an option and value and calls either f1 or f2 depending on the given option.
+
+    &gt;&gt;&gt; func_d = dispatch_function(&#x27;c to f&#x27;, c_to_f, &#x27;f to c&#x27;, f_to_c)
+    &gt;&gt;&gt; func_d(&#x27;c to f&#x27;, 0)
+    32.0
+    &gt;&gt;&gt; func_d(&#x27;f to c&#x27;, 68)
+    20.0
+    &gt;&gt;&gt; func_d(&#x27;blabl&#x27;, 2)
+    AssertionError
+    &quot;&quot;&quot;
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x64;&#x65;&#x66;&#x20;&#x66;&#x75;&#x6e;&#x63;&#x28;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x2c;&#x20;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x61;&#x73;&#x73;&#x65;&#x72;&#x74;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x31;&#x20;&#x6f;&#x72;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x32;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x6f;&#x70;&#x74;&#x69;&#x6f;&#x6e;&#x31;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x66;&#x31;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x66;&#x32;&#x28;&#x76;&#x61;&#x6c;&#x75;&#x65;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x66;&#x75;&#x6e;&#x63;</div></code></pre>
+
+
+          <button id='1' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <h3 class="question" id="q6">Question 6: Flight of the Bumblebee</h3>
+
+          <p>Write a function that takes in a number <code>n</code> and returns a function
+            that takes in a number <code>range</code> which will print all numbers from <code>0</code>
+            to <code>range</code> (including <code>0</code> but excluding <code>range</code>) but print <code>Buzz!</code>
+            instead for all the numbers that are divisible by <code>n</code>.</p>
+
+
+
+          <pre><code>def make_buzzer(n):
+    &quot;&quot;&quot; Returns a function that prints numbers in a specified
+    range except those divisible by n.
+
+    &gt;&gt;&gt; i_hate_fives = make_buzzer(5)
+    &gt;&gt;&gt; i_hate_fives(10)
+    Buzz!
+    1
+    2
+    3
+    4
+    Buzz!
+    6
+    7
+    8
+    9
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x64;&#x65;&#x66;&#x20;&#x62;&#x75;&#x7a;&#x7a;&#x28;&#x6d;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x20;&#x3d;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x69;&#x20;&#x3c;&#x20;&#x6d;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x69;&#x20;&#x25;&#x20;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x27;&#x42;&#x75;&#x7a;&#x7a;&#x21;&#x27;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x69;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x69;&#x20;&#x2b;&#x3d;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x62;&#x75;&#x7a;&#x7a;</div></code></pre>
+
+
+          <button id='2' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+  </body>
+
+
+  <script>
+    $('.sidebar ul').addClass('nav nav-stacked');
+    $('body').scrollspy({
+      target: '.sidebar',
+      offset: 40
+    });
+  </script>
+
+</html>
+  <script>
+    $('.sidebar ul').addClass('nav nav-stacked');
+    $('body').scrollspy({
+      target: '.sidebar',
+      offset: 40
+    });
+  </script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script>
+    $(function() {
+      if (new Date("07/01/2015") < new Date()) {
+        $('.toggleButton').css('display', 'inline-block');
+        $('.toggleButton').click(function() {
+          var solution_id = $(this).attr('id');
+          $('div.' + solution_id).slideToggle(600);
+        });
+      }
+      // Always display these toggle buttons
+      $('.toggleButtonShow').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    });
+  </script>
+</html>

@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<!-- modified from url=(0037)http://cs61a.org/lab/lab03/index.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="description" content="CS:2021 Python Programming">
+  <meta name="keywords" content="CS2021, EECS">
+  <meta name="author" content="cs2021">
+
+  <meta name="viewport" content="width=device-width">
+
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" href="mono-blue.css">
+  <script src="highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+  <link rel="stylesheet" type="text/css" href="resource.css">
+
+  <link rel="stylesheet" type="text/css" href="lab.css">
+
+
+  <title>Lab 03: Introduction to Recursion  | CS 2021 </title>
+
+  </head>
+
+  <body id="index" class="home">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-section">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../../index.html">CS2021 Module 3 Lab Sheet</a>
+        </div>
+
+
+      </div>
+    </nav>
+
+
+    <div id="content" class="container">
+      <div class='row'>
+        <div class='col-md-9'>
+          <div class='page-header'>
+            <h1><span class="content-title-brand">Lab 3</span>: Recursion </h1>
+          </div>
+
+
+
+
+          <p>A recursive function is a function that calls itself in its body,
+            either directly or indirectly. Recursive functions have three important
+            components:</p>
+
+          <ol>
+            <li>Base case(s), the simplest possible form of the problem you're trying to solve.</li>
+            <li>Consider a recursive call on a smaller argument.</li>
+            <li>Recursive case(s), where the function calls itself with a <em>simpler
+              argument</em> as part of the computation.</li>
+          </ol>
+
+          <p>Let's look at the canonical example, <code>factorial</code>:</p>
+
+          <pre><code>def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n &#x2d; 1)</code></pre>
+
+          <p>We know by its definition that <code>0!</code> is <code>1</code>. So we choose <code>n = 0</code> as our
+            base case. The recursive step also follows from the definition of
+            factorial, i.e.  <code>n! = n * (n&#x2d;1)!</code>.</p>
+
+          <p>The next few questions in lab will have you writing recursive
+            functions.  Here are some general tips:</p>
+
+          <ul>
+            <li>Consider how you can solve the current problem using the solution to
+              a simpler version of the problem. Remember to <em>trust the recursion</em>:
+              assume that your solution to the simpler problem works correctly
+              without worrying about how.</li>
+            <li>Think about what the answer would be in the simplest possible
+              case(s). These will be your base cases - the stopping points for your
+              recursive calls. Make sure to consider the possibility that you're
+              missing base cases (this is a common way recursive solutions fail).</li>
+            <li>It may help to write the iterative version first.</li>
+          </ul>
+
+          <!-- <table class='table table-bordered'>
+
+<pre><code>&lt;tr&gt;
+&lt;th&gt;Function Type:&lt;/th&gt;
+&lt;th&gt;Recusive&lt;/th&gt;
+&lt;th&gt;Iterative&lt;/th&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Function&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt; def factorial(n):
+if n == 0:
+return 1
+return n * factorial(n &#x2d; 1)&lt;pre&gt;&lt;/td&gt;
+&lt;td&gt;&lt;pre&gt; def factorial(n):
+total = 1
+while n &gt; 0:
+total *= n
+n &#x2d;= 1
+return total
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ends calculations&lt;/td&gt;
+&lt;td&gt;When it hits the base case&lt;/td&gt;
+&lt;td&gt;When n !&gt; 0, it will end.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Means of traversal&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;factorial(&lt;strong&gt;n &#x2d; 1&lt;/strong&gt;&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;&lt;strong&gt;n &#x2d;= 1&lt;/strong&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+
+</table> -->
+
+          <h3 class="question" id="q1">Question 1: Skip Add</h3>
+
+          <p>Write a function <code>skip_add</code> that takes a single argument <code>n</code>
+            and computes the sum of every other integers between 0 and <code>n</code>
+            starting from n. Assume <code>n</code> is non-negative.</p>
+
+
+
+          <pre><code>def skip_add(n):
+    &quot;&quot;&quot; Takes a number x and returns x + x&#x2d;2 + x&#x2d;4 + x&#x2d;6 + ... + 0.
+
+    &gt;&gt;&gt; skip_add(5)  # 5 + 3 + 1 + 0
+    9
+    &gt;&gt;&gt; skip_add(10) # 10 + 8 + 6 + 4 + 2 + 0
+    30
+    &quot;&quot;&quot;
+<div class="alt 0">    "*** YOUR CODE HERE ***"
+</div><div class="solution 0">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x20;&#x3c;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x6e;&#x20;&#x2b;&#x20;&#x73;&#x6b;&#x69;&#x70;&#x5f;&#x61;&#x64;&#x64;&#x28;&#x6e;&#x20;&#x2d;&#x20;&#x32;&#x29;</div></code></pre>
+
+
+          <button id='0' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+
+          <h3 class="question" id="q2">Question 2: Common Misconception</h3>
+
+          <p>Fix the error with the following recursive function.</p>
+
+          <pre><code>def count_up(n):
+    &quot;&quot;&quot;Print out all numbers up to and including n in ascending order.
+
+    &gt;&gt;&gt; count_up(5)
+    1
+    2
+    3
+    4
+    5
+    &quot;&quot;&quot;
+    i = 1
+    if i == n:
+        return
+    print(i)
+    i += 1
+    count_up(n&#x2d;1)</code></pre>
+
+
+          <button id='6' class='toggleButtonShow'>
+            Toggle Explanation<noscript> (enable JavaScript)</noscript>
+          </button>
+          <div class="solution 6">
+
+            <p>The variable <code>i</code> resets back to 1 for each function call
+              and will print 1 each time. Try it out!</p>
+
+          </div>
+
+          <h3 class="question" id="q3">Question 3: Common Misconception</h3>
+
+          <p>Fix the error with this recursive function.</p>
+
+          <pre><code>def skip_mul(n):
+    &quot;&quot;&quot;Return the product of n * (n &#x2d; 2) * (n &#x2d; 4) * ...
+
+    &gt;&gt;&gt; skip_mul(5) # 5 * 3 * 1
+    15
+    &gt;&gt;&gt; skip_mul(8) # 8 * 6 * 4 * 2  * 0
+    0
+    &quot;&quot;&quot;
+    if n == 0:
+        return 0
+    else:
+        return n * skip_mul(n &#x2d; 2)</code></pre>
+
+
+          <button id='7' class='toggleButtonShow'>
+            Toggle Explanation<noscript> (enable JavaScript)</noscript>
+          </button>
+          <div class="solution 7">
+
+            <p>Consider what happens when we choose an odd number for <code>n</code>.  <code>skip_mul(3)</code> will
+              return <code>3 * skip_mul(1)</code>. <code>skip_mul(1)</code> will return <code>1 * skip_mul(&#x2d;1)</code>.  You
+              may see the problem now. Since we are decreasing <code>n</code> by two at a time, we've
+              completed missed our base case of <code>n == 0</code>, and we will end up recursing
+              indefinitely. We need to add another base case to make sure this doesn't
+              happen.</p>
+
+            <pre><code>def skip_mul(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return n * skip_mul(n &#x2d; 2)</code></pre>
+
+          </div>
+
+          <h3 class="question" id="q4">Question 4: Common Misconception</h3>
+
+          <p>Fix the error with the following recursive function.</p>
+
+          <pre><code>def factorial(n):
+    &quot;&quot;&quot;Return n * (n &#x2d; 1) * (n &#x2d; 2) * ... * 1.
+
+    &gt;&gt;&gt; factorial(5)
+    120
+    &quot;&quot;&quot;
+    if n == 0:
+        return 1
+    else:
+        n * factorial(n&#x2d;1)</code></pre>
+
+
+          <button id='8' class='toggleButtonShow'>
+            Toggle Explanation<noscript> (enable JavaScript)</noscript>
+          </button>
+          <div class="solution 8">
+
+            <p>The result of the recursive calls is not returned.</p>
+
+            <pre><code>def factorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * factorial(n&#x2d;1)</code></pre>
+
+          </div>
+
+          <h3 class="question" id="q5">Question 5: Common Misconception</h3>
+
+          <p>Fix the error with the following recursive function:</p>
+
+          <pre><code>def print_up_to(n):
+    &quot;&quot;&quot;Print every natural number up to n, inclusive.
+
+    &gt;&gt;&gt; print_up_to(5)
+    1
+    2
+    3
+    4
+    5
+    &quot;&quot;&quot;
+    i = 1
+    if i &gt; n:
+        return
+    else:
+        print(i)
+        i += 1
+        print_up_to(n)</code></pre>
+
+
+          <button id='9' class='toggleButtonShow'>
+            Toggle Explanation<noscript> (enable JavaScript)</noscript>
+          </button>
+          <div class="solution 9">
+
+            <p>The function never reduces toward the base case of <code>i == n</code>.</p>
+
+            <pre><code>def print_up_to(n):
+    def helper(i):
+        print(i)
+        if i &lt; n:
+            helper(i + 1)
+    helper(1)</code></pre>
+
+            <p>Note:</p>
+
+            <ul>
+              <li>To keep track of info between recursive calls, we passsed
+                the information as arguments to the function. This also
+                allows us to get by without explicitly assigning a counter.</li>
+              <li>The helper function doesn't have a base case written.
+                The base case is implicit because we have the condition <code>i &lt; n</code>
+                We will stop recursing once <code>i == n</code> and we violate this condition.</li>
+            </ul>
+
+          </div>
+
+          <h3 class="question" id="q6">Question 6: GCD</h3>
+
+          <p>The greatest common divisor of two positive integers <code>a</code> and <code>b</code> is the
+            largest integer which evenly divides both numbers (with no remainder).
+            Euclid, a Greek mathematician in 300 B.C., realized that the greatest
+            common divisor of <code>a</code> and <code>b</code> is one of the following:</p>
+
+          <ul>
+            <li>the smaller value if it evenly divides the larger value, OR</li>
+            <li>the greatest common divisor of the smaller value and the remainder of
+              the larger value divided by the smaller value</li>
+          </ul>
+
+          <p>In other words, if <code>a</code> is greater than <code>b</code> and <code>a</code> is not divisible by
+            <code>b</code>, then</p>
+
+          <pre><code>gcd(a, b) == gcd(b, a % b)</code></pre>
+
+          <p>Write the <code>gcd</code> function recursively using Euclid's algorithm.</p>
+
+
+
+          <pre><code>def gcd(a, b):
+    &quot;&quot;&quot;Returns the greatest common divisor of a and b.
+    Should be implemented using recursion.
+
+    &gt;&gt;&gt; gcd(34, 19)
+    1
+    &gt;&gt;&gt; gcd(39, 91)
+    13
+    &gt;&gt;&gt; gcd(20, 30)
+    10
+    &gt;&gt;&gt; gcd(40, 40)
+    40
+    &quot;&quot;&quot;
+<div class="alt 1">    "*** YOUR CODE HERE ***"
+</div><div class="solution 1">&#x20;&#x20;&#x20;&#x20;&#x61;&#x2c;&#x20;&#x62;&#x20;&#x3d;&#x20;&#x6d;&#x61;&#x78;&#x28;&#x61;&#x2c;&#x20;&#x62;&#x29;&#x2c;&#x20;&#x6d;&#x69;&#x6e;&#x28;&#x61;&#x2c;&#x20;&#x62;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x61;&#x20;&#x25;&#x20;&#x62;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x62;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x67;&#x63;&#x64;&#x28;&#x62;&#x2c;&#x20;&#x61;&#x20;&#x25;&#x20;&#x62;&#x29;&#xa;&#xa;&#x23;&#x20;&#x49;&#x74;&#x65;&#x72;&#x61;&#x74;&#x69;&#x76;&#x65;&#x20;&#x73;&#x6f;&#x6c;&#x75;&#x74;&#x69;&#x6f;&#x6e;&#x2c;&#x20;&#x69;&#x66;&#x20;&#x79;&#x6f;&#x75;&#x27;&#x72;&#x65;&#x20;&#x63;&#x75;&#x72;&#x69;&#x6f;&#x75;&#x73;&#xa;&#x64;&#x65;&#x66;&#x20;&#x67;&#x63;&#x64;&#x5f;&#x69;&#x74;&#x65;&#x72;&#x28;&#x61;&#x2c;&#x20;&#x62;&#x29;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x22;&#x22;&#x22;&#x52;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x73;&#x20;&#x74;&#x68;&#x65;&#x20;&#x67;&#x72;&#x65;&#x61;&#x74;&#x65;&#x73;&#x74;&#x20;&#x63;&#x6f;&#x6d;&#x6d;&#x6f;&#x6e;&#x20;&#x64;&#x69;&#x76;&#x69;&#x73;&#x6f;&#x72;&#x20;&#x6f;&#x66;&#x20;&#x61;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x62;&#x2c;&#x20;&#x75;&#x73;&#x69;&#x6e;&#x67;&#x20;&#x69;&#x74;&#x65;&#x72;&#x61;&#x74;&#x69;&#x6f;&#x6e;&#x2e;&#xa;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3e;&#x3e;&#x3e;&#x20;&#x67;&#x63;&#x64;&#x5f;&#x69;&#x74;&#x65;&#x72;&#x28;&#x33;&#x34;&#x2c;&#x20;&#x31;&#x39;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3e;&#x3e;&#x3e;&#x20;&#x67;&#x63;&#x64;&#x5f;&#x69;&#x74;&#x65;&#x72;&#x28;&#x33;&#x39;&#x2c;&#x20;&#x39;&#x31;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x31;&#x33;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3e;&#x3e;&#x3e;&#x20;&#x67;&#x63;&#x64;&#x5f;&#x69;&#x74;&#x65;&#x72;&#x28;&#x32;&#x30;&#x2c;&#x20;&#x33;&#x30;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x31;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x3e;&#x3e;&#x3e;&#x20;&#x67;&#x63;&#x64;&#x5f;&#x69;&#x74;&#x65;&#x72;&#x28;&#x34;&#x30;&#x2c;&#x20;&#x34;&#x30;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x34;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x22;&#x22;&#x22;&#xa;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x61;&#x20;&#x3c;&#x20;&#x62;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x67;&#x63;&#x64;&#x5f;&#x69;&#x74;&#x65;&#x72;&#x28;&#x62;&#x2c;&#x20;&#x61;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x77;&#x68;&#x69;&#x6c;&#x65;&#x20;&#x61;&#x20;&#x3e;&#x20;&#x62;&#x20;&#x61;&#x6e;&#x64;&#x20;&#x6e;&#x6f;&#x74;&#x20;&#x61;&#x20;&#x25;&#x20;&#x62;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x61;&#x2c;&#x20;&#x62;&#x20;&#x3d;&#x20;&#x62;&#x2c;&#x20;&#x61;&#x20;&#x25;&#x20;&#x62;&#xa;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x62;</div></code></pre>
+
+
+          <button id='1' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <h3 class="question" id="q7">Question 7: Hailstone</h3>
+
+          <p>For the <code>hailstone</code> function from homework 1,  you pick a positive
+            integer <code>n</code> as the start. If <code>n</code> is even, divide it by 2. If <code>n</code> is
+            odd, multiply it by 3 and add 1. Repeat this process until <code>n</code> is 1.
+            Write a recursive version of hailstone that prints out the values of
+            the sequence and returns the number of steps.</p>
+
+
+
+          <pre><code>def hailstone(n):
+    &quot;&quot;&quot;Print out the hailstone sequence starting at n, and return the
+    number of elements in the sequence.
+
+    &gt;&gt;&gt; a = hailstone(10)
+    10
+    5
+    16
+    8
+    4
+    2
+    1
+    &gt;&gt;&gt; a
+    7
+    &quot;&quot;&quot;
+<div class="alt 2">    "*** YOUR CODE HERE ***"
+</div><div class="solution 2">&#x20;&#x20;&#x20;&#x20;&#x70;&#x72;&#x69;&#x6e;&#x74;&#x28;&#x6e;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x31;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x69;&#x66;&#x20;&#x6e;&#x20;&#x25;&#x20;&#x32;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x31;&#x20;&#x2b;&#x20;&#x68;&#x61;&#x69;&#x6c;&#x73;&#x74;&#x6f;&#x6e;&#x65;&#x28;&#x6e;&#x20;&#x2f;&#x2f;&#x20;&#x32;&#x29;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x31;&#x20;&#x2b;&#x20;&#x68;&#x61;&#x69;&#x6c;&#x73;&#x74;&#x6f;&#x6e;&#x65;&#x28;&#x33;&#x20;&#x2a;&#x20;&#x6e;&#x20;&#x2b;&#x20;&#x31;&#x29;</div></code></pre>
+
+
+          <button id='2' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+
+          <h2 id="tree-recursion">Tree Recursion</h2>
+
+
+          <p>A tree recursive function is a recursive function that makes
+            more than one call to itself, resulting in a tree shaped
+            process.</p>
+
+          <p>The classic example for tree recursion is fibonacci.</p>
+
+          <p><img class="img-responsive center-block" src="https://upload.wikimedia.org/wikibooks/en/3/37/Algorithms-F6CallTree.png" alt="Fibonacci Tree" title="Fibonnaci Tree"></p>
+
+          <h3 class="question" id="q8">Question 8: Fibonacci</h3>
+
+          <p>Write the fibonacci function using tree recursion.
+            The function should take in <code>n</code> and return the nth
+            fibonacci number.</p>
+
+          <p>As a reminder, Fibonacci is defined as a function where:</p>
+
+          <p><img class="img-responsive center-block" src="https://upload.wikimedia.org/math/0/c/e/0cebc512d9a3ac497eda6f10203f792e.png" alt="Fibonacci Tree" title="Fibonnaci Tree"></p>
+
+
+
+          <pre><code>def fibonacci(n):
+    &quot;&quot;&quot;Return the nth fibonacci number.
+
+    &gt;&gt;&gt; fibonacci(11)
+    89
+    &gt;&gt;&gt; fibonacci(5)
+    5
+    &gt;&gt;&gt; fibonacci(0)
+    0
+    &gt;&gt;&gt; fibonacci(1)
+    1
+    &quot;&quot;&quot;
+<div class="alt 3">    "*** YOUR CODE HERE ***"
+</div><div class="solution 3">&#x20;&#x20;&#x20;&#x20;&#x69;&#x66;&#x20;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x30;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x30;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x69;&#x66;&#x20;&#x6e;&#x20;&#x3d;&#x3d;&#x20;&#x31;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x31;&#xa;&#x20;&#x20;&#x20;&#x20;&#x65;&#x6c;&#x73;&#x65;&#x3a;&#xa;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x20;&#x72;&#x65;&#x74;&#x75;&#x72;&#x6e;&#x20;&#x66;&#x69;&#x62;&#x6f;&#x6e;&#x61;&#x63;&#x63;&#x69;&#x28;&#x6e;&#x20;&#x2d;&#x20;&#x31;&#x29;&#x20;&#x2b;&#x20;&#x66;&#x69;&#x62;&#x6f;&#x6e;&#x61;&#x63;&#x63;&#x69;&#x28;&#x6e;&#x20;&#x2d;&#x20;&#x32;&#x29;</div></code></pre>
+
+
+          <button id='3' class='toggleButton'>
+            Toggle Solution<noscript> (enable JavaScript)</noscript>
+          </button>
+
+
+          <h2 id="required-questions">Lab 03 Required Questions: Recursion</h2>
+
+<h3 class="question" id="q1">Required Question 1</h3>
+
+          <p>Write a function <code>doubletime</code> that takes a single argument <code>n</code>
+            and computes the doubling <code>n</code>
+            times starting at number 1. Assume <code>n</code> is non-negative.</p>
+<pre><code>def doubletime(n):
+    """Returns the result of doubling the number one n times
+    >>> doubletime(0)
+    1
+    >>> doubletime(1)
+    2
+    >>> doubletime(3)
+    8
+    >>> doubletime(10)
+    1024
+    """
+    "*** YOUR CODE HERE ***"
+</pre></code>
+
+<h3 class="question" id="q1">Required Question 2</h3>
+
+          <p>Write a function <code>skip2_add</code> that takes a single argument <code>n</code>
+            and computes the sum of every third integer starting from <code>n</code>
+            down to 0. Assume <code>n</code> is non-negative.</p>
+
+<pre><code>def skip2_add(n):
+    """ Takes a number x and returns x + x-3 + x-6 + x-9 + ... + 0.
+
+    >>> skip2_add(5)  # 5 + 2  + 0
+    7
+    >>> skip2_add(10) # 10 + 7 + 4 + 1 + 0
+    22
+    """
+    "*** YOUR CODE HERE ***"
+</pre></code>
+
+
+
+<h3 class="question" id="q1">Required Question 3</h3>
+<p> Many interesting recursively defined sequences can be found at the website
+http://oeis.org. Here is one chosen at random http://oeis.org/A070885. Here are the first few terms
+1, 3, 6, 9, 15, 24, 36...
+<pre><code>def a(n):
+    """Return the number in the sequence defined by a(1) = 1;
+    a(n) = (3/2)*a(n-1) if a(n-1) is even; a(n) = (3/2)*(a(n-1)+1) if a(n-1) is odd.
+    >>> a(1)
+    1
+    >>> a(2)
+    3
+    >>> a(3)
+    6
+    >>> a(4)
+    9
+    >>> a(10)
+    123
+    """
+    "*** YOUR CODE HERE ***"
+</pre></code>
+
+<h3 class="question" id="q1">Required Question 4</h3>
+
+          <p>Consider an insect in an <em>M</em> by <em>N</em> grid. The insect starts at the
+            bottom left corner, <em>(0, 0)</em>, and wants to end up at the top right
+            corner, <em>(M-1, N-1)</em>. The insect is only capable of moving right or
+            up. Write a function <code>paths</code> that takes a grid length and width
+            and returns the number of different paths the insect can take from the
+            start to the goal. (There is a closed-form solution to this problem,
+            but try to answer it procedurally using recursion.)</p>
+
+          <p><img class="img-responsive center-block" src="./grid.jpg" alt="grid"></p>
+
+          <p>For example, the 2 by 2 grid has a total of two ways for the insect to
+            move from the start to the goal. For the 3 by 3 grid, the insect has 6
+            diferent paths (only 3 are shown above).</p>
+
+
+
+          <pre><code>def paths(m, n):
+    &quot;&quot;&quot;Return the number of paths from one corner of an
+    M by N grid to the opposite corner.
+    &gt;&gt;&gt; paths(2, 2)
+    2
+    &gt;&gt;&gt; paths(3, 3)
+    6
+    &gt;&gt;&gt; paths(5, 7)
+    210
+    &quot;&quot;&quot;
+<div class="alt 4">    "*** YOUR CODE HERE ***"
+</pre></code>
+
+
+        </div>
+
+        </div>
+
+      </div>
+    </div>
+  </body>
+  <script>
+    $('.sidebar ul').addClass('nav nav-stacked');
+    $('body').scrollspy({
+      target: '.sidebar',
+      offset: 40
+    });
+  </script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script>
+    $(function() {
+      if (new Date("07/04/2015") < new Date()) {
+        $('.toggleButton').css('display', 'inline-block');
+        $('.toggleButton').click(function() {
+          var solution_id = $(this).attr('id');
+          $('div.' + solution_id).slideToggle(600);
+        });
+      }
+      // Always display these toggle buttons
+      $('.toggleButtonShow').click(function() {
+        var solution_id = $(this).attr('id');
+        $('div.' + solution_id).slideToggle(600);
+      });
+    });
+  </script>
+</html>
